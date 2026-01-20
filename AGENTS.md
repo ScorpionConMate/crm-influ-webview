@@ -18,6 +18,7 @@ Use these skills for detailed patterns on-demand:
 |`zod-4`|    New API (z.email(), z.uuid())|[SKILL.md](.opencode/skills/zod-4/SKILL.md)|
 |`zustand-5`|Persist, selectors, slices|[SKILL.md](.opencode/skills/zustand-5/SKILL.md)|
 |`ui-ux-pro-max`| UI/UX design intelligence (50 styles, 21 palettes, 50 font pairings, 20 charts, 9 frameworks)| [SKILL.md](.opencode/skills/ui-ux-pro-max/SKILL.md)|
+|`task-management`|Task management CLI for tracking and managing feature subtasks with status, dependencies, and validation|[SKILL.md](.opencode/skills/task-management/SKILL.md)|
 
 ### Auto-invoke Skills
 
