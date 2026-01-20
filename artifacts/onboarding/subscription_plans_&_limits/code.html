@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Subscription Plans</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13c8ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#101f22",
+                        "card-dark": "#162629",
+                        "card-border": "#283b3f",
+                        "text-secondary": "#9db4b9"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        /* Hide scrollbar for clean horizontal scrolling if needed */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col font-display">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm border-b border-gray-200 dark:border-[#283b3f]">
+<div class="flex items-center p-4 justify-between">
+<button class="text-slate-900 dark:text-white flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">Choose your Plan</h2>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto pb-10">
+<!-- Usage Warning Section -->
+<section class="px-4 py-6">
+<div class="rounded-xl border border-orange-500/30 bg-orange-500/10 p-5">
+<div class="flex justify-between items-center mb-3">
+<h3 class="text-orange-500 font-bold text-sm tracking-wide uppercase">Current Limit Reached</h3>
+<span class="text-white text-xs font-medium bg-orange-500/20 px-2 py-1 rounded">Starter Plan</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex gap-6 justify-between items-end">
+<p class="text-white text-base font-semibold leading-normal">Contacts Used</p>
+<p class="text-orange-400 text-sm font-bold leading-normal">492 / 500</p>
+</div>
+<div class="rounded-full bg-background-dark h-3 overflow-hidden border border-white/5">
+<div class="h-full rounded-full bg-gradient-to-r from-orange-400 to-red-500" style="width: 98%;"></div>
+</div>
+<p class="text-text-secondary text-xs mt-1">You're almost out of contacts. Upgrade to Pro for unlimited access.</p>
+</div>
+</div>
+</section>
+<!-- Billing Toggle -->
+<section class="px-4 pb-6">
+<div class="flex h-12 w-full items-center justify-center rounded-xl bg-card-dark p-1 border border-card-border">
+<label class="flex cursor-pointer h-full flex-1 items-center justify-center overflow-hidden rounded-lg px-2 transition-all hover:bg-white/5 text-text-secondary has-[:checked]:bg-background-dark has-[:checked]:text-white has-[:checked]:shadow-sm">
+<span class="truncate text-sm font-medium">Monthly</span>
+<input class="invisible w-0 absolute" name="billing" type="radio" value="Monthly"/>
+</label>
+<label class="flex cursor-pointer h-full flex-1 items-center justify-center overflow-hidden rounded-lg px-2 transition-all hover:bg-white/5 text-text-secondary has-[:checked]:bg-background-dark has-[:checked]:text-primary has-[:checked]:shadow-sm relative">
+<span class="truncate text-sm font-medium">Yearly</span>
+<span class="absolute -top-1 -right-1 flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="ml-2 text-[10px] bg-primary/20 text-primary px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wide">Save 20%</span>
+<input checked="" class="invisible w-0 absolute" name="billing" type="radio" value="Yearly"/>
+</label>
+</div>
+</section>
+<!-- Pricing Cards Stack -->
+<section class="flex flex-col gap-6 px-4">
+<!-- Starter Plan (Current) -->
+<div class="relative flex flex-col gap-4 rounded-xl border border-card-border bg-card-dark p-6 opacity-80 hover:opacity-100 transition-opacity">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<h3 class="text-white text-lg font-bold">Starter</h3>
+<span class="text-white text-xs font-semibold tracking-wide rounded-full bg-white/10 px-3 py-1 text-center">Current Plan</span>
+</div>
+<p class="flex items-baseline gap-1 text-white mt-2">
+<span class="text-white text-4xl font-black tracking-tight">Free</span>
+</p>
+<p class="text-text-secondary text-sm">Perfect for hobbyists starting out.</p>
+</div>
+<div class="h-px bg-white/10 w-full"></div>
+<div class="flex flex-col gap-3">
+<div class="text-[14px] font-medium flex items-center gap-3 text-white">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                        500 Active Contacts
+                    </div>
+<div class="text-[14px] font-medium flex items-center gap-3 text-white">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                        Basic Analytics
+                    </div>
+<div class="text-[14px] font-medium flex items-center gap-3 text-text-secondary/50">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+                        Multi-creator support
+                    </div>
+<div class="text-[14px] font-medium flex items-center gap-3 text-text-secondary/50">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+                        Advanced Automations
+                    </div>
+</div>
+<button class="w-full mt-2 cursor-not-allowed opacity-50 items-center justify-center rounded-lg h-12 px-4 bg-background-dark border border-white/10 text-white text-sm font-bold tracking-wide" disabled="">
+                    Current Plan
+                </button>
+</div>
+<!-- Pro Plan (Target Upgrade) -->
+<div class="relative flex flex-col gap-4 rounded-xl border-2 border-primary bg-gradient-to-b from-[#183036] to-card-dark p-6 shadow-[0_0_30px_rgba(19,200,236,0.15)] transform scale-[1.02]">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-background-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
+                    Most Popular
+                </div>
+<div class="flex flex-col gap-1 mt-2">
+<div class="flex items-center justify-between">
+<h3 class="text-white text-lg font-bold">Pro</h3>
+</div>
+<p class="flex items-baseline gap-1 text-white mt-2">
+<span class="text-white text-4xl font-black tracking-tight">$29</span>
+<span class="text-text-secondary text-base font-medium">/mo</span>
+</p>
+<p class="text-primary text-sm font-medium">Everything you need to grow.</p>
+</div>
+<div class="h-px bg-white/10 w-full"></div>
+<div class="flex flex-col gap-3">
+<div class="text-[14px] font-medium flex items-center gap-3 text-white">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                        Unlimited Contacts
+                    </div>
+<div class="text-[14px] font-medium flex items-center gap-3 text-white">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                        Deep Audience Insights
+                    </div>
+<div class="text-[14px] font-medium flex items-center gap-3 text-white">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                        Multi-creator support
+                    </div>
+<div class="text-[14px] font-medium flex items-center gap-3 text-text-secondary/50">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+                        Advanced Automations
+                    </div>
+</div>
+<button class="w-full mt-2 cursor-pointer items-center justify-center rounded-lg h-12 px-4 bg-primary hover:bg-primary/90 transition-colors text-background-dark text-sm font-bold tracking-wide shadow-lg shadow-primary/20">
+                    Upgrade to Pro
+                </button>
+</div>
+<!-- Creator+ Plan -->
+<div class="relative flex flex-col gap-4 rounded-xl border border-card-border bg-card-dark p-6">
+<div class="flex flex-col gap-1">
+<h3 class="text-white text-lg font-bold">Creator+</h3>
+<p class="flex items-baseline gap-1 text-white mt-2">
+<span class="text-white text-4xl font-black tracking-tight">$99</span>
+<span class="text-text-secondary text-base font-medium">/mo</span>
+</p>
+<p class="text-text-secondary text-sm">For professional creators scaling up.</p>
+</div>
+<div class="h-px bg-white/10 w-full"></div>
+<div class="flex flex-col gap-3">
+<div class="text-[14px] font-medium flex items-center gap-3 text-white">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                        Everything in Pro
+                    </div>
+<div class="text-[14px] font-medium flex items-center gap-3 text-white">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                        Advanced Automations
+                    </div>
+<div class="text-[14px] font-medium flex items-center gap-3 text-white">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                        Priority Support
+                    </div>
+<div class="text-[14px] font-medium flex items-center gap-3 text-white">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                        API Access
+                    </div>
+</div>
+<button class="w-full mt-2 cursor-pointer items-center justify-center rounded-lg h-12 px-4 bg-card-border hover:bg-white/10 transition-colors text-white text-sm font-bold tracking-wide">
+                    Start Free Trial
+                </button>
+</div>
+<!-- Agency Plan -->
+<div class="relative flex flex-col gap-4 rounded-xl border border-card-border bg-card-dark p-6 mb-8">
+<div class="flex flex-col gap-1">
+<h3 class="text-white text-lg font-bold">Agency</h3>
+<p class="flex items-baseline gap-1 text-white mt-2">
+<span class="text-white text-2xl font-black tracking-tight">Talk to Sales</span>
+</p>
+<p class="text-text-secondary text-sm">Custom solutions for large teams.</p>
+</div>
+<div class="h-px bg-white/10 w-full"></div>
+<div class="flex flex-col gap-3">
+<div class="text-[14px] font-medium flex items-center gap-3 text-white">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                        Custom Limits
+                    </div>
+<div class="text-[14px] font-medium flex items-center gap-3 text-white">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                        Dedicated Account Manager
+                    </div>
+<div class="text-[14px] font-medium flex items-center gap-3 text-white">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                        Whitelabeling
+                    </div>
+</div>
+<button class="w-full mt-2 cursor-pointer items-center justify-center rounded-lg h-12 px-4 border border-white/20 hover:bg-white/5 transition-colors text-white text-sm font-bold tracking-wide">
+                    Contact Us
+                </button>
+</div>
+</section>
+<!-- Terms Footer -->
+<footer class="p-6 text-center border-t border-white/5">
+<p class="text-text-secondary text-xs leading-relaxed">
+                By upgrading, you agree to our <a class="underline hover:text-white" href="#">Terms of Service</a> and <a class="underline hover:text-white" href="#">Privacy Policy</a>. Subscriptions auto-renew until canceled.
+            </p>
+</footer>
+</main>
+</body></html>

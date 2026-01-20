@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Influencer CRM Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13c8ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#101f22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden pb-24">
+<header class="sticky top-0 z-20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm pt-safe-top">
+<div class="flex items-center justify-between p-4 pb-2">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-primary" data-alt="User profile avatar showing a smiling creator" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCs3tR-iW_wIkLU1ZyZoxlcL0vWO7n1-gxlNLamQnbeldFpQnLN96XqdaXDz5P7K0Z0Ab3--W-LboAo5V3lcd7HmFUyZOVzniX6kkrVZE-i7gTptRLCmTqDOjqw4sQlGHQjLe2Mok4s9X3jx5fG6UXdeSu_poq0g3jLfrYvhZmTlMOep-MRpNCgyJowPpSs5u7DPzzUJ1qnCAIv3MpyuFCJflxTEVkkBVym5w9n3IbWkoAMne-x-7eofXcy0mSaVVMHzFRsrigndvI");'>
+</div>
+<div class="absolute bottom-0 right-0 size-3 bg-primary rounded-full border-2 border-background-light dark:border-background-dark"></div>
+</div>
+<div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight">Good morning, Sarah</h2>
+</div>
+</div>
+<button class="relative flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors p-2">
+<span class="material-symbols-outlined !text-[28px]">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full animate-pulse"></span>
+</button>
+</div>
+<div class="px-4 pb-4">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Tuesday, Oct 24</p>
+</div>
+</header>
+<section class="px-4 pt-2">
+<div class="flex gap-4 overflow-x-auto no-scrollbar pb-4 snap-x snap-mandatory">
+<div class="flex min-w-[160px] flex-1 flex-col gap-3 rounded-xl p-5 bg-gradient-to-br from-primary to-[#0ea5c6] shadow-lg shadow-primary/20 snap-center">
+<div class="flex items-center justify-between text-white/90">
+<span class="text-sm font-medium">Confirmed</span>
+<span class="material-symbols-outlined !text-[20px]">verified</span>
+</div>
+<div>
+<p class="text-white text-3xl font-bold leading-tight tracking-tight">$12.5k</p>
+<p class="text-white/80 text-xs mt-1">+15% from last month</p>
+</div>
+</div>
+<div class="flex min-w-[160px] flex-1 flex-col gap-3 rounded-xl p-5 bg-white dark:bg-[#1e2e32] border border-slate-200 dark:border-slate-800 shadow-sm snap-center">
+<div class="flex items-center justify-between text-slate-500 dark:text-slate-400">
+<span class="text-sm font-medium">Prospect</span>
+<span class="material-symbols-outlined !text-[20px]">person_search</span>
+</div>
+<div>
+<p class="text-slate-900 dark:text-white text-3xl font-bold leading-tight tracking-tight">5 Deals</p>
+<p class="text-slate-400 dark:text-slate-500 text-xs mt-1">~ $8,200 potential</p>
+</div>
+</div>
+<div class="flex min-w-[160px] flex-1 flex-col gap-3 rounded-xl p-5 bg-white dark:bg-[#1e2e32] border border-slate-200 dark:border-slate-800 shadow-sm snap-center">
+<div class="flex items-center justify-between text-slate-500 dark:text-slate-400">
+<span class="text-sm font-medium">Negotiating</span>
+<span class="material-symbols-outlined !text-[20px]">handshake</span>
+</div>
+<div>
+<p class="text-slate-900 dark:text-white text-3xl font-bold leading-tight tracking-tight">2 Deals</p>
+<p class="text-slate-400 dark:text-slate-500 text-xs mt-1">Awaiting response</p>
+</div>
+</div>
+</div>
+</section>
+<section class="px-4 py-6">
+<div class="grid grid-cols-2 gap-4">
+<button class="flex flex-col items-center gap-3 group w-full">
+<div class="flex items-center justify-center size-16 rounded-full bg-white dark:bg-[#1e2e32] border border-slate-200 dark:border-slate-800 shadow-sm group-active:scale-95 transition-all group-hover:border-primary/50 group-hover:shadow-md group-hover:shadow-primary/10">
+<span class="material-symbols-outlined text-primary !text-[32px]">calendar_month</span>
+</div>
+<span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Check-In</span>
+</button>
+<button class="flex flex-col items-center gap-3 group w-full">
+<div class="flex items-center justify-center size-16 rounded-full bg-white dark:bg-[#1e2e32] border border-slate-200 dark:border-slate-800 shadow-sm group-active:scale-95 transition-all group-hover:border-primary/50 group-hover:shadow-md group-hover:shadow-primary/10">
+<span class="material-symbols-outlined text-primary !text-[32px]">note_add</span>
+</div>
+<span class="text-xs font-semibold text-slate-700 dark:text-slate-300">New Deal</span>
+</button>
+<button class="flex flex-col items-center gap-3 group w-full">
+<div class="flex items-center justify-center size-16 rounded-full bg-white dark:bg-[#1e2e32] border border-slate-200 dark:border-slate-800 shadow-sm group-active:scale-95 transition-all group-hover:border-primary/50 group-hover:shadow-md group-hover:shadow-primary/10">
+<span class="material-symbols-outlined text-primary !text-[32px]">add_location_alt</span>
+</div>
+<span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Add Place</span>
+</button>
+<button class="flex flex-col items-center gap-3 group w-full">
+<div class="flex items-center justify-center size-16 rounded-full bg-white dark:bg-[#1e2e32] border border-slate-200 dark:border-slate-800 shadow-sm group-active:scale-95 transition-all group-hover:border-primary/50 group-hover:shadow-md group-hover:shadow-primary/10">
+<span class="material-symbols-outlined text-primary !text-[32px]">notifications</span>
+</div>
+<span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Reminder</span>
+</button>
+</div>
+</section>
+<section class="flex flex-col flex-1 px-4 mt-2 gap-4">
+<div class="flex items-center justify-between">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold">Today's Priorities</h3>
+<button class="text-primary text-sm font-medium">View All</button>
+</div>
+<div class="group flex items-start gap-4 p-4 rounded-xl bg-white dark:bg-[#1e2e32] border border-slate-100 dark:border-slate-800 shadow-sm hover:border-primary/50 transition-colors cursor-pointer">
+<div class="mt-1 flex-shrink-0">
+<input class="size-5 rounded border-2 border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-offset-background-dark focus:ring-primary" type="checkbox"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Draft Caption for Nike</h4>
+<span class="text-xs font-medium text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded">Due 2pm</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-1">Include #JustDoIt and tag @nikerunning in the first comment.</p>
+<div class="mt-3 flex items-center gap-2">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-6 border border-slate-200 dark:border-slate-700" data-alt="Logo of Nike brand" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDkVDQW8FS5BB-iRQuDqbd_fpVPqPa1KtmKEAws5JAwG3Pe2-AKGCamY3sYLu8UDuiliFt5wXcuWWA0rHRJiAjbEjOIt8j4yuBW7l8Z-kIBEa24AK35wrqDz-EbULi2cmSZK911IAeINbO7DIJdOvc8joYITK0vNIYGrCdPxaHmCK63mtzO_whAadfpB0rKjSbzl5fy3EigYW5wb8-mIxujKew2QzCV6SR6_Mh_1F5kNXngQKfACZSwEsB-hVin3FKJw2zeq8O2Rho"); background-color: white;'>
+</div>
+<span class="text-xs text-slate-400 font-medium">Nike Campaign Q4</span>
+</div>
+</div>
+</div>
+<div class="group flex items-start gap-4 p-4 rounded-xl bg-white dark:bg-[#1e2e32] border border-slate-100 dark:border-slate-800 shadow-sm hover:border-primary/50 transition-colors cursor-pointer">
+<div class="mt-1 flex-shrink-0">
+<input class="size-5 rounded border-2 border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-offset-background-dark focus:ring-primary" type="checkbox"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Submit Analytics</h4>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">Due 5pm</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-1">Sephora "Summer Glow" reel insights screenshot.</p>
+<div class="mt-3 flex items-center gap-2">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-6 border border-slate-200 dark:border-slate-700" data-alt="Logo of Sephora brand" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAkXBS5jF02aPwvTHXOTewpeoNDO7Ridii1tulx_2xbOEksyD78fFLXwrvBoY54cD02VqSzD8UbkRfkS6vF0Ns2Hzmt661-5RFZqbL55_8xuxsYEbJ5-YdOlNIuZfQi6Sljn0paBWCRD8aXnyxBcuOvQu5b2p_OAnl8vaTbSOabqVIeqMkkVPevsg6w24Bi2oiUwofnPTYSgqQMJF8_7L53pzS9w0A4B22BCf90t7jaOsJR7CpxZxV3HaeVeO6Des03vav9Vz0m3Jo"); background-color: black;'>
+</div>
+<span class="text-xs text-slate-400 font-medium">Sephora Glow</span>
+</div>
+</div>
+</div>
+<div class="group flex items-start gap-4 p-4 rounded-xl bg-white dark:bg-[#1e2e32] border border-slate-100 dark:border-slate-800 shadow-sm hover:border-primary/50 transition-colors cursor-pointer opacity-60">
+<div class="mt-1 flex-shrink-0">
+<input checked="" class="size-5 rounded border-2 border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-offset-background-dark focus:ring-primary" type="checkbox"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="text-sm font-semibold text-slate-900 dark:text-white line-through decoration-slate-500">Respond to Gymshark DM</h4>
+<span class="text-xs font-medium text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded">Done</span>
+</div>
+</div>
+</div>
+</section>
+<div class="h-6"></div>
+</div>
+<nav class="fixed bottom-0 left-0 z-30 w-full bg-white/95 dark:bg-[#152327]/95 backdrop-blur-lg border-t border-slate-200 dark:border-slate-800 pb-safe-bottom">
+<div class="relative flex items-center justify-between h-20 px-6">
+<div class="flex items-center gap-8">
+<button class="flex flex-col items-center justify-center gap-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+<span class="material-symbols-outlined !text-[26px]">bar_chart</span>
+<span class="text-[10px] font-medium">Pipeline</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+<span class="material-symbols-outlined !text-[26px]">map</span>
+<span class="text-[10px] font-medium">Places</span>
+</button>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2 -top-6">
+<button class="flex items-center justify-center size-16 rounded-full bg-primary text-white shadow-lg shadow-primary/40 ring-4 ring-background-light dark:ring-background-dark active:scale-95 transition-transform">
+<span class="material-symbols-outlined !text-[32px]">dashboard</span>
+</button>
+</div>
+<div class="flex items-center gap-8">
+<button class="flex flex-col items-center justify-center gap-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+<span class="material-symbols-outlined !text-[26px]">calendar_month</span>
+<span class="text-[10px] font-medium">Calendar</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+<span class="material-symbols-outlined !text-[26px]">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</button>
+</div>
+</div>
+</nav>
+</body></html>

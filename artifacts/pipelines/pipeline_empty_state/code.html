@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pipeline Empty State</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13c8ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#101f22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex h-screen w-full flex-col overflow-hidden max-w-[430px] mx-auto shadow-2xl border-x border-slate-200 dark:border-slate-800">
+<!-- TopAppBar -->
+<header class="flex items-center bg-background-light dark:bg-background-dark p-4 pt-12 pb-2 justify-between sticky top-0 z-10 border-b border-slate-200 dark:border-slate-800/50">
+<div class="flex size-10 shrink-0 items-center justify-start">
+<button class="p-2 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">menu</span>
+</button>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-semibold leading-tight tracking-tight flex-1 text-center font-display">Pipeline</h2>
+<div class="flex size-10 items-center justify-end">
+<button class="flex cursor-pointer items-center justify-center rounded-full size-10 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">settings</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area (Empty State) -->
+<main class="flex-1 flex flex-col items-center justify-center px-8 pb-20">
+<div class="w-full max-w-sm flex flex-col items-center text-center">
+<!-- Illustration Area -->
+<div class="relative mb-10 group">
+<div class="absolute -inset-4 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-all duration-700"></div>
+<div class="relative flex items-center justify-center w-48 h-48 rounded-full bg-gradient-to-br from-background-light to-slate-100 dark:from-background-dark dark:to-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden">
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, #13c8ec 1px, transparent 0); background-size: 16px 16px;"></div>
+<!-- Handshake/Funnel Abstract Visual -->
+<div class="relative z-10 flex flex-col items-center gap-2">
+<span class="material-symbols-outlined text-primary text-7xl font-light">handshake</span>
+<div class="flex gap-1">
+<span class="w-2 h-2 rounded-full bg-primary/40"></span>
+<span class="w-2 h-2 rounded-full bg-primary/60"></span>
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+</div>
+</div>
+</div>
+</div>
+<!-- Text Content -->
+<div class="space-y-3 mb-10">
+<h1 class="text-slate-900 dark:text-white text-2xl font-bold tracking-tight font-display px-2">
+                        ¿Tienes colaboraciones en marcha?
+                    </h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed px-4">
+                        Organiza tus canjes y pagos aquí para que no se te escape ninguna fecha ni entregable.
+                    </p>
+</div>
+<!-- Action Group -->
+<div class="flex flex-col w-full gap-3">
+<button class="w-full h-12 flex items-center justify-center bg-primary hover:bg-primary/90 text-background-dark text-sm font-bold tracking-tight rounded-lg transition-all active:scale-[0.98] shadow-lg shadow-primary/20">
+                        Crear mi primer Deal
+                    </button>
+<button class="w-full h-12 flex items-center justify-center bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800/50 text-slate-600 dark:text-slate-400 text-sm font-semibold tracking-tight rounded-lg transition-all border border-transparent hover:border-slate-200 dark:hover:border-slate-700">
+                        Ver ejemplo
+                    </button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="sticky bottom-0 w-full border-t border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md pb-8 pt-2">
+<div class="flex items-center justify-around px-2">
+<a class="flex flex-1 flex-col items-center gap-1 group" href="#">
+<div class="relative flex flex-col items-center justify-center py-1">
+<span class="material-symbols-outlined material-symbols-fill text-primary text-2xl">view_kanban</span>
+<div class="absolute -top-1 right-0 w-1.5 h-1.5 bg-primary rounded-full"></div>
+</div>
+<span class="text-[10px] font-bold text-primary tracking-wide">Pipeline</span>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">chat_bubble</span>
+<span class="text-[10px] font-medium tracking-wide">Mensajes</span>
+</a>
+<!-- Floating Central Button for Home/Add -->
+<div class="flex flex-1 justify-center -mt-8 mb-4">
+<button class="w-14 h-14 bg-slate-900 dark:bg-white rounded-full flex items-center justify-center shadow-2xl border-4 border-background-light dark:border-background-dark active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-white dark:text-background-dark text-3xl">home</span>
+</button>
+</div>
+<a class="flex flex-1 flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">analytics</span>
+<span class="text-[10px] font-medium tracking-wide">Insights</span>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">person</span>
+<span class="text-[10px] font-medium tracking-wide">Perfil</span>
+</a>
+</div>
+<!-- iOS Home Indicator Spacing -->
+<div class="h-2"></div>
+</nav>
+</div>
+</body></html>

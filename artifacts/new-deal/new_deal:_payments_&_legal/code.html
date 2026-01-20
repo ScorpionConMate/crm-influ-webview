@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html class="" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>New Deal: Payments &amp; Legal</title>
+<!-- Fonts and Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13c8ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#101f22",
+                        "surface-dark": "#1c2628", // Slightly lighter than background-dark
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white min-h-screen flex flex-col items-center justify-center p-0 m-0">
+<!-- Mobile Device Container -->
+<div class="relative w-full max-w-md h-screen max-h-[900px] flex flex-col bg-background-light dark:bg-background-dark overflow-hidden shadow-2xl mx-auto border-x border-slate-200 dark:border-slate-800 sm:rounded-xl sm:h-[844px] sm:my-8">
+<!-- Top App Bar -->
+<div class="flex items-center p-4 pb-2 justify-between z-10 shrink-0">
+<button class="text-slate-900 dark:text-white flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-10">New Deal</h2>
+</div>
+<!-- Progress Indicators -->
+<div class="flex w-full flex-col items-center justify-center py-2 px-6 shrink-0">
+<div class="flex w-full flex-row items-center justify-between gap-2">
+<div class="h-1.5 flex-1 rounded-full bg-primary"></div>
+<div class="h-1.5 flex-1 rounded-full bg-primary"></div>
+<div class="h-1.5 flex-1 rounded-full bg-primary"></div>
+<div class="h-1.5 flex-1 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-2 font-medium">Step 3 of 4</p>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto px-5 pt-2 pb-24 scrollbar-hide">
+<!-- Headline -->
+<h1 class="text-slate-900 dark:text-white tracking-tight text-[28px] font-bold leading-tight text-left pt-4 pb-6">Payments &amp; Legal</h1>
+<!-- Financial Card -->
+<div class="space-y-5">
+<div class="flex flex-col gap-4">
+<label class="flex flex-col w-full">
+<p class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal pb-2">Deal Value</p>
+<div class="flex gap-3">
+<!-- Currency Dropdown -->
+<div class="relative w-1/3">
+<select class="appearance-none w-full bg-white dark:bg-surface-dark border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white h-14 rounded-xl px-4 pr-8 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent font-medium">
+<option>USD</option>
+<option>EUR</option>
+<option>GBP</option>
+<option>CAD</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500">
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+</div>
+<!-- Amount Input -->
+<div class="relative w-2/3">
+<span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-500 dark:text-slate-400 font-semibold">$</span>
+<input class="w-full bg-white dark:bg-surface-dark border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white h-14 rounded-xl pl-8 pr-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent font-medium placeholder:text-slate-400" placeholder="0.00" type="number"/>
+</div>
+</div>
+</label>
+</div>
+<!-- Payment Schedule -->
+<div class="flex flex-col gap-2 pt-2">
+<p class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal pb-1">Payment Schedule</p>
+<div class="grid grid-cols-2 gap-3">
+<label class="cursor-pointer">
+<input checked="" class="peer sr-only" name="payment_schedule" type="radio"/>
+<div class="flex items-center justify-center h-12 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-surface-dark text-slate-500 dark:text-slate-400 font-medium peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary transition-all">
+                                Upfront
+                            </div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="payment_schedule" type="radio"/>
+<div class="flex items-center justify-center h-12 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-surface-dark text-slate-500 dark:text-slate-400 font-medium peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary transition-all">
+                                Net 30
+                            </div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="payment_schedule" type="radio"/>
+<div class="flex items-center justify-center h-12 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-surface-dark text-slate-500 dark:text-slate-400 font-medium peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary transition-all">
+                                Net 60
+                            </div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="payment_schedule" type="radio"/>
+<div class="flex items-center justify-center h-12 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-surface-dark text-slate-500 dark:text-slate-400 font-medium peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary transition-all">
+                                Custom
+                            </div>
+</label>
+</div>
+</div>
+<!-- File Uploader -->
+<div class="flex flex-col gap-2 pt-2">
+<p class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal pb-1">Attachments</p>
+<div class="group relative flex flex-col items-center justify-center w-full h-36 rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-600 hover:border-primary dark:hover:border-primary bg-slate-50 dark:bg-surface-dark hover:bg-slate-100 dark:hover:bg-[#232f32] transition-all cursor-pointer">
+<div class="flex flex-col items-center justify-center pt-5 pb-6">
+<div class="p-3 bg-white dark:bg-[#111718] rounded-full shadow-sm mb-3">
+<span class="material-symbols-outlined text-primary text-2xl">upload_file</span>
+</div>
+<p class="mb-1 text-sm font-medium text-slate-900 dark:text-white">Contracts or Documents</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">PDF, DOCX up to 10MB</p>
+</div>
+<input class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" type="file"/>
+</div>
+</div>
+<!-- Legal Notice / Tip -->
+<div class="flex gap-3 bg-blue-50 dark:bg-[#162629] p-4 rounded-xl border border-blue-100 dark:border-[#2a3c40] items-start">
+<span class="material-symbols-outlined text-primary text-lg mt-0.5">info</span>
+<p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Contracts uploaded here will be automatically sent to the influencer for e-signature upon deal creation.
+                    </p>
+</div>
+</div>
+</div>
+<!-- Bottom Action Bar -->
+<div class="absolute bottom-0 w-full bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 p-4 pb-8 sm:pb-4 z-20">
+<button class="w-full bg-primary hover:bg-[#11b5d6] text-background-dark font-bold text-base h-12 rounded-xl shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2">
+                Next Step
+                <span class="material-symbols-outlined text-xl">arrow_forward</span>
+</button>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Influencer CRM - Setup</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13c8ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#101f22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        body {
+            min-height: 100dvh;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden pb-24">
+<header class="sticky top-0 z-20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm pt-safe-top">
+<div class="flex items-center justify-between p-4 pb-2">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-primary" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBk8R5-saZMjkhz2VSZtAgeEm6xvXnwUUQsfzMCz59dcX1qgzFvBeWBLKVCWkCN6Sm9InLOwVlxWkPkP2RsP0ZES_su8fmiOvMeekXMfZkdjmPHKIOF6__b8tLcEszi934rx-NznNw-5vL61OrYT3Xm53hA_FAYcNh2GGw7fyZxbid_5kNDJTXUYoAouclfY-lZtT7d5Nf6oY0Si3auRL_9nyCKC2SENjB_-gV_WmP8tJB0-q8tXCzfXszuIuqttReWXqeqsqCu8f0");'>
+</div>
+<div class="absolute bottom-0 right-0 size-3 bg-primary rounded-full border-2 border-background-light dark:border-background-dark"></div>
+</div>
+<div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight">¡Hola, Sarah!</h2>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium">Martes, 24 Oct</p>
+</div>
+</div>
+<button class="relative flex items-center justify-center text-slate-500 dark:text-slate-400 p-2">
+<span class="material-symbols-outlined !text-[28px]">notifications</span>
+</button>
+</div>
+</header>
+<section class="px-4 pt-2">
+<div class="bg-white dark:bg-[#1e2e32] rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-bold text-slate-900 dark:text-white">Completa tu setup</h3>
+<span class="text-primary text-sm font-bold">0/3</span>
+</div>
+<div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full mb-6 overflow-hidden">
+<div class="bg-primary h-full w-[10%] rounded-full"></div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<div class="size-6 rounded-full border-2 border-slate-200 dark:border-slate-700 flex items-center justify-center">
+<span class="material-symbols-outlined !text-xs opacity-0">check</span>
+</div>
+<span class="text-sm text-slate-600 dark:text-slate-300">Agrega un lugar</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="size-6 rounded-full border-2 border-slate-200 dark:border-slate-700 flex items-center justify-center">
+<span class="material-symbols-outlined !text-xs opacity-0">check</span>
+</div>
+<span class="text-sm text-slate-600 dark:text-slate-300">Crea tu primer deal</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="size-6 rounded-full border-2 border-slate-200 dark:border-slate-700 flex items-center justify-center">
+<span class="material-symbols-outlined !text-xs opacity-0">check</span>
+</div>
+<span class="text-sm text-slate-600 dark:text-slate-300">Sube un contrato</span>
+</div>
+</div>
+</div>
+</section>
+<section class="px-4 py-6">
+<div class="grid grid-cols-4 gap-2">
+<button class="flex flex-col items-center gap-2 group">
+<div class="flex items-center justify-center size-14 rounded-full bg-white dark:bg-[#1e2e32] border border-slate-200 dark:border-slate-800 shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary !text-[26px]">calendar_month</span>
+</div>
+<span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300 text-center">Check-In</span>
+</button>
+<button class="flex flex-col items-center gap-2 group">
+<div class="flex items-center justify-center size-14 rounded-full bg-white dark:bg-[#1e2e32] border border-slate-200 dark:border-slate-800 shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary !text-[26px]">note_add</span>
+</div>
+<span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300 text-center">New Deal</span>
+</button>
+<button class="flex flex-col items-center gap-2 group">
+<div class="flex items-center justify-center size-14 rounded-full bg-white dark:bg-[#1e2e32] border border-slate-200 dark:border-slate-800 shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary !text-[26px]">add_location_alt</span>
+</div>
+<span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300 text-center">Add Place</span>
+</button>
+<button class="flex flex-col items-center gap-2 group">
+<div class="flex items-center justify-center size-14 rounded-full bg-white dark:bg-[#1e2e32] border border-slate-200 dark:border-slate-800 shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary !text-[26px]">notifications</span>
+</div>
+<span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300 text-center">Reminder</span>
+</button>
+</div>
+</section>
+<div class="flex flex-col gap-8 px-4">
+<section>
+<h3 class="text-slate-900 dark:text-white text-lg font-bold mb-4">Próximas Tareas</h3>
+<div class="flex flex-col items-center justify-center py-8 px-6 bg-slate-50 dark:bg-[#1e2e32]/30 rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-800">
+<div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-full mb-4">
+<span class="material-symbols-outlined !text-[32px] text-slate-400">task</span>
+</div>
+<p class="text-slate-900 dark:text-white font-semibold text-center mb-1">Todo al día</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs text-center max-w-[200px]">Usa <span class="text-primary font-medium">Recordatorio</span> para organizar tus pendientes de hoy.</p>
+</div>
+</section>
+<section>
+<h3 class="text-slate-900 dark:text-white text-lg font-bold mb-4">Deals Activos</h3>
+<div class="flex flex-col items-center justify-center py-10 px-6 bg-slate-50 dark:bg-[#1e2e32]/30 rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-800">
+<div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-full mb-4">
+<span class="material-symbols-outlined !text-[32px] text-slate-400">handshake</span>
+</div>
+<p class="text-slate-900 dark:text-white font-semibold text-center mb-1">Sin colaboraciones activas</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs text-center max-w-[200px]">Toca <span class="text-primary font-medium">Nuevo Deal</span> para empezar a gestionar tus acuerdos.</p>
+</div>
+</section>
+</div>
+</div>
+<nav class="fixed bottom-0 left-0 z-30 w-full bg-white/90 dark:bg-[#152327]/95 backdrop-blur-lg border-t border-slate-200 dark:border-slate-800 pb-safe-bottom">
+<div class="flex justify-around items-center h-16">
+<button class="flex flex-col items-center justify-center w-full h-full gap-1 text-primary">
+<span class="material-symbols-outlined !text-[24px]">dashboard</span>
+<span class="text-[10px] font-medium">Inicio</span>
+</button>
+<button class="flex flex-col items-center justify-center w-full h-full gap-1 text-slate-400">
+<span class="material-symbols-outlined !text-[24px]">bar_chart</span>
+<span class="text-[10px] font-medium">Pipeline</span>
+</button>
+<button class="flex flex-col items-center justify-center w-full h-full gap-1 text-slate-400">
+<span class="material-symbols-outlined !text-[24px]">map</span>
+<span class="text-[10px] font-medium">Lugares</span>
+</button>
+<button class="flex flex-col items-center justify-center w-full h-full gap-1 text-slate-400">
+<span class="material-symbols-outlined !text-[24px]">person</span>
+<span class="text-[10px] font-medium">Perfil</span>
+</button>
+</div>
+</nav>
+
+</body></html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Visit Session Summary</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13c8ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#101f22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.375rem",
+                        "md": "0.375rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased">
+<!-- Main Container -->
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto shadow-2xl bg-white dark:bg-[#111a1c]">
+<!-- Top App Bar -->
+<div class="sticky top-0 z-10 flex items-center bg-white/95 dark:bg-[#111a1c]/95 backdrop-blur-md px-4 py-3 justify-between border-b border-gray-100 dark:border-gray-800">
+<button class="text-gray-900 dark:text-white flex size-10 shrink-0 items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back_ios_new</span>
+</button>
+<h2 class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-tight text-center flex-1 pr-10">Summary</h2>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto pb-24">
+<!-- Success Header -->
+<div class="flex flex-col items-center pt-8 pb-6 px-6 text-center">
+<div class="mb-4 flex items-center justify-center rounded-full bg-primary/10 p-5 dark:bg-primary/20">
+<span class="material-symbols-outlined text-primary text-5xl">check_circle</span>
+</div>
+<h2 class="text-gray-900 dark:text-white text-2xl font-bold leading-tight mb-2">Session Complete!</h2>
+<p class="text-gray-500 dark:text-gray-400 text-sm font-medium leading-relaxed max-w-[280px]">
+                    Here is a recap of your visit with <span class="text-gray-900 dark:text-white font-semibold">@alex_creative</span>.
+                </p>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 gap-3 px-4 mb-6">
+<!-- Duration -->
+<div class="flex flex-col gap-1 rounded-2xl bg-gray-50 dark:bg-gray-800/50 p-4 border border-gray-100 dark:border-gray-700">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-xl">timer</span>
+<p class="text-gray-500 dark:text-gray-400 text-xs font-semibold uppercase tracking-wider">Duration</p>
+</div>
+<p class="text-gray-900 dark:text-white text-xl font-bold tracking-tight">45m 12s</p>
+</div>
+<!-- Status -->
+<div class="flex flex-col gap-1 rounded-2xl bg-gray-50 dark:bg-gray-800/50 p-4 border border-gray-100 dark:border-gray-700">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-orange-400 text-xl">pending</span>
+<p class="text-gray-500 dark:text-gray-400 text-xs font-semibold uppercase tracking-wider">Status</p>
+</div>
+<p class="text-gray-900 dark:text-white text-xl font-bold tracking-tight">Pending</p>
+</div>
+<!-- Voice Memos -->
+<div class="flex flex-col gap-1 rounded-2xl bg-gray-50 dark:bg-gray-800/50 p-4 border border-gray-100 dark:border-gray-700">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-purple-400 text-xl">mic</span>
+<p class="text-gray-500 dark:text-gray-400 text-xs font-semibold uppercase tracking-wider">Voice</p>
+</div>
+<p class="text-gray-900 dark:text-white text-xl font-bold tracking-tight">3 Memos</p>
+</div>
+<!-- Photos Count -->
+<div class="flex flex-col gap-1 rounded-2xl bg-gray-50 dark:bg-gray-800/50 p-4 border border-gray-100 dark:border-gray-700">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-green-400 text-xl">photo_camera</span>
+<p class="text-gray-500 dark:text-gray-400 text-xs font-semibold uppercase tracking-wider">Photos</p>
+</div>
+<p class="text-gray-900 dark:text-white text-xl font-bold tracking-tight">5 Captured</p>
+</div>
+</div>
+<!-- Notes Preview -->
+<div class="px-4 mb-6">
+<div class="flex flex-col rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm overflow-hidden">
+<div class="flex items-center justify-between p-4 pb-2 border-b border-gray-100 dark:border-gray-700/50">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-gray-400 text-xl">edit_note</span>
+<span class="text-gray-900 dark:text-white text-sm font-bold">Notes Preview</span>
+</div>
+<button class="text-primary text-xs font-bold uppercase tracking-wider hover:text-primary/80">Edit</button>
+</div>
+<div class="p-4 pt-3">
+<p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                            Met at the coffee shop. Discussed the upcoming Q3 campaign partnership and agreed on the initial deliverables. Alex is excited about the new product line...
+                        </p>
+</div>
+<a class="block bg-gray-50 dark:bg-gray-700/30 px-4 py-3 text-center text-xs font-semibold text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors border-t border-gray-100 dark:border-gray-700/50" href="#">
+                        View Full Note
+                    </a>
+</div>
+</div>
+<!-- Media Strip -->
+<div class="px-4 mb-6">
+<h3 class="text-gray-900 dark:text-white text-sm font-bold mb-3 pl-1">Media Captured</h3>
+<div class="flex gap-3 overflow-x-auto pb-4 -mx-4 px-4 snap-x">
+<div class="relative shrink-0 w-24 h-24 rounded-lg overflow-hidden snap-start shadow-sm border border-gray-100 dark:border-gray-700">
+<img class="w-full h-full object-cover" data-alt="Latte art on a wooden table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtIbgAwqgLUyrJC31bYSOrScuJp_SZyAm_9lmPn5zpjJe95BE677bh4D6-py9XKYUKQ4756jOfN1BfoT5_rjGnwP3Qy-hLX5uUH99yRMqFIpHa_UstZhG_mVKLPHf5DeHBH3QalbCauJyiAf5ow6s8qeEGLvra3F1ZRO4TEbxrGbkV0ZLle5mXX2-fW8IXArPFDtID1XAGkP2hmLEyLWc3bWsyer9tfJW735h4bbUxf5VJzBu9HQa2OD4aYazvZLhmfA1KTZyo6fE"/>
+</div>
+<div class="relative shrink-0 w-24 h-24 rounded-lg overflow-hidden snap-start shadow-sm border border-gray-100 dark:border-gray-700">
+<img class="w-full h-full object-cover" data-alt="Camera sitting on table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9j-GqolXwGWN_DKD3GCiMtzLr1xJB-s--EIAVdr7xnOFDBgldaO6X9YoXnUXfYPbTUrxt7etS11pHZ0P4TDYmxX16UOZLp4b4GW86WMxNAGtmaYLFfPPT5A5kN10OtcjKlyFiNu2-gao-jkBxboX1r7FvDsoo8gLzaD5yqAwFylNahZBU1E8wNfDDtasfwtYd4ecfmZhmI37SdxRqE88KPSAZHuprBsh9aqlE3v-yH4mfyLrMFp5XtkJ6idO-Ibpzc5pYCMnOeqQ"/>
+</div>
+<div class="relative shrink-0 w-24 h-24 rounded-lg overflow-hidden snap-start shadow-sm border border-gray-100 dark:border-gray-700">
+<img class="w-full h-full object-cover" data-alt="Photography equipment setup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVg5XyEM5ORYeLf0jqIEezZuWBubhnQnGGUSqINKrWwtUReBBHz5EgXBkVVLKIlXc_ushtnW5Jz4lAqgZNVyP7sATu2D0KRBC-qS8ILnb-qhrTRykCAOkXhb479goLJZDgRIYma5h_kSj-I1Zv7PRlo73zXO0sT6vVFfvtU_TArhc1WAsQxuciSEUAOCzr7Kru5VHbAmTf4_4C36HOU5K9yKFfZfI4Sl0z_kb_TqNUpD8e6kJrhNadrGm-Qc6eHQfgZW5H9xL0weE"/>
+</div>
+<div class="relative shrink-0 w-24 h-24 rounded-lg overflow-hidden snap-start shadow-sm border border-gray-100 dark:border-gray-700">
+<img class="w-full h-full object-cover" data-alt="Abstract cafe interior background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPTzEU-mHJaQ-rMDYjWG7r0QW4thNe9SJuQLlA74TkyW89zWntt4CEyh7pLzk7A0-J4kvEv_u2skgF-IQ2UaAOW1kqBfQIWg8X-ExjKTocFYrq_j5hbJL5d-S06rpfYptKF7D9-cJfDeeyzwSnWbtthVsQcTDGMxmG6Bge4jJA_EZpPa1JmrJJAFtrQZNh7j-pJEkXJpC5icarwfWJTCt5_QEf9tEgxX2LRY7YOJ2Q_IcT8kuXQBVmH8GcmecjtkBwJn2iMtBQLv4"/>
+</div>
+<div class="relative shrink-0 w-24 h-24 rounded-lg overflow-hidden snap-start shadow-sm border border-gray-100 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+<span class="text-gray-400 text-xs font-semibold">+1</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Footer -->
+<div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white dark:bg-[#111a1c] border-t border-gray-100 dark:border-gray-800 p-4 pb-8 z-20">
+<div class="flex flex-col gap-3">
+<button class="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-4 text-white hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 active:scale-[0.98]">
+<span class="text-base font-bold tracking-wide">Save &amp; Sync</span>
+<span class="material-symbols-outlined text-[20px]">cloud_upload</span>
+</button>
+<button class="flex w-full items-center justify-center rounded-xl bg-transparent px-6 py-2 text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors">
+<span class="text-sm font-semibold">Discard Session</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lugares - Empty State</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13c8ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#101f22",
+                        "surface-dark": "#18282b", // Slightly lighter than background-dark for nav/cards
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark h-screen w-full flex flex-col overflow-hidden text-slate-900 dark:text-white transition-colors duration-300">
+<!-- Top App Bar -->
+<header class="flex items-center justify-between px-4 py-3 bg-background-light dark:bg-background-dark z-10">
+<!-- Left spacer for balance -->
+<div class="w-10"></div>
+<h1 class="text-lg font-bold tracking-tight text-center flex-1">
+            Lugares
+        </h1>
+<!-- Search Action (Ghosted/Secondary) -->
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+</header>
+<!-- Main Content (Empty State) -->
+<main class="flex-1 flex flex-col items-center justify-center px-6 relative w-full max-w-md mx-auto">
+<!-- Illustration Area -->
+<div class="w-full flex flex-col items-center justify-center mb-8">
+<div class="relative w-64 h-64 mb-6">
+<!-- Abstract Glow Background -->
+<div class="absolute inset-0 bg-primary/20 blur-3xl rounded-full transform scale-75"></div>
+<!-- Illustration Image -->
+<div class="relative w-full h-full bg-contain bg-center bg-no-repeat drop-shadow-2xl" data-alt="Modern isometric illustration of a floating map with a cyan location pin and a stylized storefront" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB-_CBZDD9ZqdzMWsdfLUNGZ3OlacaDfFoid8HStf57Gc3UTOe6CR8zg7qn0DHVnorX6hhabvzDvgZeEwkF9oMmM8rLfNUq6k1y5dS09_dxUTRxv022s1HWJrWZhlxJsFaJfB36zkMxeJWqlcFpzLJALe44AUnKVcEnhEpVeELIxEsu06h101OTRdvmB41AvhsOc1-boTnVu1_xCmsxi-JL6gR3ht-rYKbqvH0YRR7ey9e_bPdiDr7GApAUGPXwN14lB0uFxXHRBck'); mask-image: radial-gradient(circle, black 60%, transparent 100%); -webkit-mask-image: radial-gradient(circle, black 60%, transparent 100%);">
+<!-- Using a generic city/map texture as a placeholder for the illustration described -->
+</div>
+<!-- Floating Icon overlay to reinforce "Places" theme -->
+<div class="absolute bottom-4 right-10 bg-surface-dark border border-white/10 p-3 rounded-2xl shadow-xl transform rotate-6">
+<span class="material-symbols-outlined text-primary text-3xl">storefront</span>
+</div>
+</div>
+<!-- Text Content -->
+<div class="text-center space-y-3 max-w-xs mx-auto">
+<h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+                    Tu base de datos personal
+                </h2>
+<p class="text-slate-500 dark:text-gray-400 text-base leading-relaxed">
+                    Guarda aquí los restaurantes o marcas con los que quieres trabajar.
+                </p>
+</div>
+</div>
+<!-- Spacer to push button down but keep it centered in available space initially -->
+<div class="flex-grow"></div>
+<!-- Primary CTA Button -->
+<div class="w-full pb-6">
+<button class="w-full py-3.5 px-4 bg-primary hover:bg-[#0fb3d4] text-background-dark rounded-xl font-bold text-base shadow-lg shadow-primary/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-xl">add</span>
+<span>Agregar Lugar</span>
+</button>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="pb-safe pt-2 bg-white dark:bg-[#152326] border-t border-gray-200 dark:border-white/5 w-full">
+<div class="flex items-end justify-between px-2 pb-2">
+<!-- Inicio -->
+<a class="flex-1 flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors text-2xl">home</span>
+<span class="text-[10px] font-medium text-gray-400 group-hover:text-primary transition-colors">Inicio</span>
+</a>
+<!-- Buscar -->
+<a class="flex-1 flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors text-2xl">search</span>
+<span class="text-[10px] font-medium text-gray-400 group-hover:text-primary transition-colors">Buscar</span>
+</a>
+<!-- Central Action (Home/Plus) -->
+<div class="flex-1 flex flex-col items-center justify-end relative -top-3">
+<button class="w-14 h-14 bg-gradient-to-tr from-primary to-[#6ff2ff] rounded-full flex items-center justify-center shadow-lg shadow-primary/30 transform transition-transform active:scale-95 border-4 border-white dark:border-background-dark">
+<span class="material-symbols-outlined text-background-dark text-3xl font-bold">add</span>
+</button>
+</div>
+<!-- Lugares (Active) -->
+<a class="flex-1 flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-primary fill text-2xl">map</span>
+<span class="text-[10px] font-medium text-primary">Lugares</span>
+</a>
+<!-- Perfil -->
+<a class="flex-1 flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors text-2xl">person</span>
+<span class="text-[10px] font-medium text-gray-400 group-hover:text-primary transition-colors">Perfil</span>
+</a>
+</div>
+</nav>
+<!-- Safe area spacing for iOS -->
+<div class="h-1 bg-white dark:bg-[#152326]"></div>
+</body></html>

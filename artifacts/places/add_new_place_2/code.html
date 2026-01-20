@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add New Place - Influencer CRM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13c8ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#101f22",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#18282b",
+                        "border-light": "#dbe4e6",
+                        "border-dark": "#2a3b3e",
+                        "text-main-light": "#111718",
+                        "text-main-dark": "#e0e6e7",
+                        "text-sub-light": "#618389",
+                        "text-sub-dark": "#8a9ea1",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>.hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-main-light dark:text-text-main-dark h-screen overflow-hidden flex flex-col antialiased">
+<header class="flex-none bg-surface-light dark:bg-surface-dark px-4 py-3 flex items-center justify-between border-b border-border-light dark:border-border-dark">
+<button class="text-base font-medium text-text-sub-light dark:text-text-sub-dark hover:text-text-main-light dark:hover:text-text-main-dark transition-colors">
+            Cancel
+        </button>
+<h1 class="text-lg font-bold tracking-tight">Add New Place</h1>
+<div class="w-[52px]"></div>
+</header>
+<main class="flex-1 overflow-y-auto overflow-x-hidden pb-32">
+<section class="p-4">
+<div class="relative w-full h-56 rounded-2xl border-2 border-dashed border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark flex flex-col items-center justify-center gap-3 transition-colors hover:bg-gray-50 dark:hover:bg-opacity-50 cursor-pointer group">
+<div class="h-12 w-12 rounded-full bg-background-light dark:bg-background-dark flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+<span class="material-symbols-outlined text-primary text-2xl">add_a_photo</span>
+</div>
+<div class="text-center">
+<p class="text-sm font-bold text-text-main-light dark:text-text-main-dark">Add Cover Photo</p>
+<p class="text-xs text-text-sub-light dark:text-text-sub-dark mt-1">Tap to upload image</p>
+</div>
+</div>
+</section>
+<form class="flex flex-col gap-6 px-4">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-text-main-light dark:text-text-main-dark" for="placeName">Name of Place</label>
+<input class="w-full h-12 rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark px-4 text-base placeholder:text-text-sub-light dark:placeholder:text-text-sub-dark focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-shadow text-text-main-light dark:text-text-main-dark" id="placeName" placeholder="e.g. Joe's Cafe" type="text"/>
+</div>
+<div class="flex flex-col gap-3">
+<label class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">Category</label>
+<div class="flex gap-3 overflow-x-auto hide-scrollbar pb-1 -mx-4 px-4 snap-x">
+<button class="snap-start shrink-0 flex items-center gap-2 h-10 px-4 rounded-full bg-primary/10 border border-primary/20 text-primary" type="button">
+<span class="material-symbols-outlined text-[20px]">restaurant</span>
+<span class="text-sm font-bold">Restaurant</span>
+</button>
+<button class="snap-start shrink-0 flex items-center gap-2 h-10 px-4 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-text-sub-light dark:text-text-sub-dark hover:bg-background-light dark:hover:bg-background-dark/50 transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">hotel</span>
+<span class="text-sm font-medium">Hotel</span>
+</button>
+<button class="snap-start shrink-0 flex items-center gap-2 h-10 px-4 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-text-sub-light dark:text-text-sub-dark hover:bg-background-light dark:hover:bg-background-dark/50 transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+<span class="text-sm font-medium">Shop</span>
+</button>
+<button class="snap-start shrink-0 flex items-center gap-2 h-10 px-4 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-text-sub-light dark:text-text-sub-dark hover:bg-background-light dark:hover:bg-background-dark/50 transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">calendar_month</span>
+<span class="text-sm font-medium">Event</span>
+</button>
+<button class="snap-start shrink-0 flex items-center gap-2 h-10 px-4 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-text-sub-light dark:text-text-sub-dark hover:bg-background-light dark:hover:bg-background-dark/50 transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+<span class="text-sm font-medium">Other</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<label class="text-sm font-semibold text-text-main-light dark:text-text-main-dark" for="address">Address</label>
+<button class="flex items-center gap-1 text-primary text-xs font-bold uppercase tracking-wide hover:opacity-80 transition-opacity" type="button">
+<span class="material-symbols-outlined text-sm">my_location</span>
+                        Use Current Location
+                    </button>
+</div>
+<div class="relative">
+<input class="w-full h-12 rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark pl-4 pr-12 text-base placeholder:text-text-sub-light dark:placeholder:text-text-sub-dark focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-shadow text-text-main-light dark:text-text-main-dark" id="address" placeholder="123 Main St, City..." type="text"/>
+<div class="absolute right-3 top-1/2 -translate-y-1/2 text-text-sub-light dark:text-text-sub-dark pointer-events-none flex items-center">
+<span class="material-symbols-outlined text-xl">map</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-text-main-light dark:text-text-main-dark" for="notes">Quick Note / Initial Impressions</label>
+<textarea class="w-full rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark p-4 text-base placeholder:text-text-sub-light dark:placeholder:text-text-sub-dark focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-shadow resize-none text-text-main-light dark:text-text-main-dark" id="notes" placeholder="Great ambiance, good for working..." rows="4"></textarea>
+</div>
+<div class="flex flex-col gap-3">
+<label class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">Contacts (Optional)</label>
+<div class="relative">
+<input class="w-full h-12 rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark pl-11 pr-4 text-base placeholder:text-text-sub-light dark:placeholder:text-text-sub-dark focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-shadow text-text-main-light dark:text-text-main-dark" placeholder="Search contacts by name..." type="text"/>
+<div class="absolute left-4 top-1/2 -translate-y-1/2 text-text-sub-light dark:text-text-sub-dark pointer-events-none flex items-center">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+</div>
+<button class="flex items-center justify-center gap-2 w-full h-12 rounded-xl border border-dashed border-border-light dark:border-border-dark hover:border-primary/50 bg-surface-light dark:bg-surface-dark hover:bg-primary/5 text-text-sub-light dark:text-text-sub-dark hover:text-primary transition-all group" type="button">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">add</span>
+<span class="text-sm font-medium group-hover:text-primary transition-colors">Add New Contact</span>
+</button>
+</div>
+</form>
+<div class="h-6"></div>
+</main>
+<footer class="fixed bottom-0 left-0 right-0 p-4 bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-md border-t border-border-light dark:border-border-dark z-10">
+<button class="w-full h-14 bg-primary hover:bg-primary/90 text-white font-bold text-lg rounded-xl shadow-lg shadow-primary/20 flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
+<span>Save Place</span>
+</button>
+</footer>
+</body></html>
