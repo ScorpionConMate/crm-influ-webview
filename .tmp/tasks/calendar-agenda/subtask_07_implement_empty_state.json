@@ -1,0 +1,70 @@
+{
+  "id": "subtask_07",
+  "name": "Implement empty state",
+  "status": "pending",
+  "priority": "low",
+  "estimatedEffort": "45 minutes",
+  "description": "Create empty state component for calendar when no events are scheduled",
+  "dependencies": [
+    "subtask_04_create_agenda_view.json",
+    "subtask_06_update_calendar_toggle_integration.json"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create empty state illustration",
+      "details": [
+        "Create src/components/calendar/CalendarEmptyState.tsx",
+        "Stylized clock/calendar graphic with Tailwind",
+        "Use primary color palette",
+        "Match artifact design (rounded circles, border effects)"
+      ]
+    },
+    {
+      "step": 2,
+      "description": "Add empty state copy",
+      "details": [
+        "Headline: 'Tu agenda está despejada' (Your agenda is clear)",
+        "Description: 'Agrega fechas de publicación, visitas o recordatorios...'",
+        "English copy if project uses English",
+        "Center text alignment, readable spacing"
+      ]
+    },
+    {
+      "step": 3,
+      "description": "Add action buttons",
+      "details": [
+        "Primary CTA: 'Programar mi primer evento' (Schedule my first event)",
+        "Secondary: 'Explorar próximos días' (Explore upcoming days)",
+        "Buttons open event creation or navigate to future dates"
+      ]
+    },
+    {
+      "step": 4,
+      "description": "Integrate into views",
+      "details": [
+        "Show empty state in AgendaView when no events",
+        "Show empty state in DayDetail when day has no events",
+        "Hide empty state when events exist",
+        "Animate transition between empty and populated states"
+      ]
+    }
+  ],
+  "deliverables": [
+    "src/components/calendar/CalendarEmptyState.tsx"
+  ],
+  "validation": [
+    "Empty state displays when no events exist",
+    "Illustration matches artifact design",
+    "Copy is clear and actionable",
+    "Buttons navigate to correct flows",
+    "Empty state hides when events are added",
+    "Transition is smooth"
+  ],
+  "notes": [
+    "Reference: artifacts/calendar/calendar_empty_state",
+    "Use Material Symbols for calendar icon in illustration",
+    "Consider localization if app supports multiple languages",
+    "Empty state should be consistent across the app"
+  ]
+}

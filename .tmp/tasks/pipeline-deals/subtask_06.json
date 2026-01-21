@@ -1,0 +1,47 @@
+{
+  "id": "subtask_06",
+  "taskId": "pipeline-deals-module",
+  "title": "Integrate DealDetail with places and contacts",
+  "description": "Ensure DealDetail displays linked place and contact information correctly, fetch from stores",
+  "priority": "medium",
+  "status": "pending",
+  "estimatedHours": 1,
+  "dependencies": ["subtask_03"],
+  "assignee": null,
+  "steps": [
+    {
+      "step": 1,
+      "title": "Import placesStore and contactsStore",
+      "description": "Import usePlacesStore and useContactsStore in DealDetail.tsx"
+    },
+    {
+      "step": 2,
+      "title": "Fetch linked place and contact",
+      "description": "Get place by deal.placeId and contact by deal.contactId from stores"
+    },
+    {
+      "step": 3,
+      "title": "Display place and contact info",
+      "description": "Show place name, address, category and contact name, role, email in DealDetail summary"
+    },
+    {
+      "step": 4,
+      "title": "Add navigation to place/contact detail",
+      "description": "If place/contact detail views exist, add links to navigate to them"
+    }
+  ],
+  "acceptanceCriteria": [
+    "DealDetail shows linked place information (name, address, category)",
+    "DealDetail shows linked contact information (name, role, email)",
+    "Place and contact are fetched from respective stores",
+    "Place/contact sections handle missing links gracefully (optional fields)"
+  ],
+  "filesToModify": [
+    "src/components/pipeline/DealDetail.tsx"
+  ],
+  "validationCommands": [
+    "npm run lint",
+    "npx tsc --noEmit"
+  ],
+  "notes": "Place/contact detail views from Group A may not exist yet. Link to them conditionally when Group A is complete."
+}

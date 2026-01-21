@@ -1,0 +1,35 @@
+{
+  "id": "subtask-01",
+  "title": "Extend visitsStore with session management",
+  "description": "Add voice memo support, photos array, and session state management to visitsStore",
+  "status": "pending",
+  "estimatedHours": 2,
+  "dependencies": [],
+  "tasks": [
+    "Add voiceMemos array to Visit type in schemas.ts",
+    "Add photos array to Visit type in schemas.ts",
+    "Extend visitsStore with activeVisit state management",
+    "Add addVoiceMemoToVisit action",
+    "Add addPhotoToVisit action",
+    "Add updateActiveVisit action",
+    "Add getActiveVisitDuration selector",
+    "Ensure persist middleware stores session state"
+  ],
+  "acceptanceCriteria": [
+    "Visit type includes voiceMemos: VoiceMemo[] and photos: Photo[]",
+    "VoiceMemo type includes id, url, duration, timestamp",
+    "Photo type includes id, url, timestamp",
+    "activeVisit state is persisted across page refreshes",
+    "getActiveVisitDuration returns formatted duration string",
+    "addVoiceMemoToVisit adds memo to both visit and activeVisit",
+    "addPhotoToVisit adds photo to both visit and activeVisit"
+  ],
+  "files": [
+    "src/lib/zod/schemas.ts",
+    "src/stores/visitsStore.ts"
+  ],
+  "validation": {
+    "runLint": true,
+    "runTypecheck": true
+  }
+}

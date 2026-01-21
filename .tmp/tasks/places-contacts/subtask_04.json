@@ -1,0 +1,30 @@
+{
+  "id": "places-contacts-04",
+  "seq": "04",
+  "title": "Create AddPlaceStep1 component (basic info form)",
+  "status": "completed",
+  "depends_on": ["01"],
+  "parallel": true,
+  "context_files": [
+    "src/lib/zod/schemas.ts",
+    "src/stores/placesStore.ts",
+    "@artifacts/places/add_new_place_1"
+  ],
+  "acceptance_criteria": [
+    "Form matches @artifacts/places/add_new_place_1 design",
+    "Fields: name, type, address, phone, website",
+    "Zod validation for all fields",
+    "Real-time validation feedback",
+    "Submit button disabled when invalid",
+    "On valid submit, calls createPlace from placesStore",
+    "Responsive mobile-first design",
+    "Uses shadcn/ui input, button, card components"
+  ],
+  "deliverables": [
+    "src/components/AddPlaceStep1.tsx"
+  ],
+  "agent_id": "coder-agent",
+  "started_at": "2026-01-21T14:30:00Z",
+  "completed_at": "2026-01-21T14:45:00Z",
+  "completion_summary": "Created AddPlaceStep1 component with name, category, address, city, phone, website fields. Real-time Zod validation with inline errors. Category selection uses radio-style chips. Submit button disabled when invalid. Mobile-first design with fixed footer. TypeScript validation passed."
+}

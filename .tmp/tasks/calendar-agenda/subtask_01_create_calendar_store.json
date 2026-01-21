@@ -1,0 +1,52 @@
+{
+  "id": "subtask_01",
+  "name": "Create calendarStore.ts",
+  "status": "pending",
+  "priority": "high",
+  "estimatedEffort": "30 minutes",
+  "description": "Create Zustand store for calendar state management with current date, selected date, view mode",
+  "dependencies": [],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create src/stores/calendarStore.ts with Zustand",
+      "details": [
+        "Define interface with currentDate, selectedDate, viewMode ('month' | 'agenda' | 'day-detail')",
+        "Add selectors for current month days, selected day events",
+        "Add actions: setCurrentDate, setSelectedDate, setViewMode, navigateMonth, goToToday",
+        "Persist store with zustand/middleware"
+      ]
+    },
+    {
+      "step": 2,
+      "description": "Add computed selectors",
+      "details": [
+        "getMonthDays() - returns array of days in current month with padding",
+        "getWeekDays() - returns 7 days from selected date",
+        "getDayEvents(date) - returns events for specific date"
+      ]
+    },
+    {
+      "step": 3,
+      "description": "Add view state management",
+      "details": [
+        "Toggle between 'month', 'agenda', 'day-detail' views",
+        "Store view preference in localStorage"
+      ]
+    }
+  ],
+  "deliverables": [
+    "src/stores/calendarStore.ts"
+  ],
+  "validation": [
+    "Store is typed with TypeScript interfaces",
+    "Persist middleware is configured",
+    "Selectors return correct date calculations",
+    "Actions update state and persist to localStorage"
+  ],
+  "notes": [
+    "Use date-fns for date calculations",
+    "Follow existing store patterns (remindersStore, visitsStore)",
+    "Keep store minimal - event data comes from other stores"
+  ]
+}

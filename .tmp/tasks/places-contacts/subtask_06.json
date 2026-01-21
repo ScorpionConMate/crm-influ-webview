@@ -1,0 +1,30 @@
+{
+  "id": "places-contacts-06",
+  "seq": "06",
+  "title": "Create PlaceDetail component (info + timeline)",
+  "status": "completed",
+  "depends_on": ["01", "03"],
+  "parallel": false,
+  "context_files": [
+    "src/stores/placesStore.ts",
+    "@artifacts/places/place_details_&_history",
+    "src/components/Timeline.tsx"
+  ],
+  "acceptance_criteria": [
+    "View matches @artifacts/places/place_details_&_history design",
+    "Displays all place information (name, type, address, etc.)",
+    "Shows contact people associated with place",
+    "Embedded Timeline component shows visit history",
+    "Edit button opens AddPlaceStep1/Step2 modals",
+    "Delete button with confirmation",
+    "Responsive mobile-first design",
+    "Uses shadcn/ui card, button, dialog components"
+  ],
+  "deliverables": [
+    "src/components/PlaceDetail.tsx"
+  ],
+  "agent_id": "coder-agent",
+  "started_at": "2025-01-21T12:00:00Z",
+  "completed_at": "2025-01-21T12:15:00Z",
+  "completion_summary": "Created PlaceDetail component with full place info display, linked contacts, embedded Timeline, edit/delete actions, mobile-first design using shadcn/ui"
+}

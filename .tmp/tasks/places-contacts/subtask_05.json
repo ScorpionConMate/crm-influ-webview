@@ -1,0 +1,30 @@
+{
+  "id": "places-contacts-05",
+  "seq": "05",
+  "title": "Create AddPlaceStep2 component (details form)",
+  "status": "completed",
+  "depends_on": ["01"],
+  "parallel": true,
+  "context_files": [
+    "src/lib/zod/schemas.ts",
+    "src/stores/placesStore.ts",
+    "@artifacts/places/add_new_place_2"
+  ],
+  "acceptance_criteria": [
+    "Form matches @artifacts/places/add_new_place_2 design",
+    "Fields: description, tags, notes, hours of operation",
+    "Zod validation for all fields",
+    "Real-time validation feedback",
+    "Submit button disabled when invalid",
+    "On valid submit, calls updatePlace from placesStore",
+    "Responsive mobile-first design",
+    "Uses shadcn/ui textarea, input, button, card components"
+  ],
+  "deliverables": [
+    "src/components/AddPlaceStep2.tsx"
+  ],
+  "agent_id": "coder-agent",
+  "started_at": "2026-01-21T14:45:00Z",
+  "completed_at": "2026-01-21T15:00:00Z",
+  "completion_summary": "Created AddPlaceStep2 component with description, tags, hours, notes fields. Created placeStep2Schema for optional fields validation. Combines all details into structured notes field. Submit button disabled when invalid. Mobile-first design. TypeScript validation passed."
+}

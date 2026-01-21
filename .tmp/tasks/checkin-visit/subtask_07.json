@@ -1,0 +1,37 @@
+{
+  "id": "subtask-07",
+  "title": "Add routes and navigation integration",
+  "description": "Configure TanStack Router for check-in flow with proper navigation hierarchy",
+  "status": "pending",
+  "estimatedHours": 1,
+  "dependencies": ["subtask-03", "subtask-04", "subtask-05", "subtask-06"],
+  "tasks": [
+    "Add /checkin/start route",
+    "Add /checkin/notes route",
+    "Add /checkin/history route",
+    "Add /checkin/summary route",
+    "Update router/index.tsx with new routes",
+    "Add back navigation handling",
+    "Handle active visit state across route changes",
+    "Add route guards for active visit check",
+    "Update MobileShell to hide bottom tabs on check-in routes"
+  ],
+  "acceptanceCriteria": [
+    "/checkin/start renders StartVisit component",
+    "/checkin/notes renders VisitNotes component",
+    "/checkin/history renders VisitHistory component",
+    "/checkin/summary renders VisitSummary component",
+    "Back navigation works properly",
+    "Active visit state persists across routes",
+    "Route guard redirects if no active visit",
+    "Bottom tabs are hidden on check-in screens",
+    "All routes are accessible from app navigation"
+  ],
+  "files": [
+    "src/router/index.tsx"
+  ],
+  "validation": {
+    "runLint": true,
+    "runTypecheck": true
+  }
+}

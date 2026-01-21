@@ -1,0 +1,74 @@
+{
+  "id": "subtask_04",
+  "name": "Create AgendaView.tsx list view",
+  "status": "pending",
+  "priority": "high",
+  "estimatedEffort": "1.5 hours",
+  "description": "Implement agenda list view showing events chronologically grouped by day with week navigation",
+  "dependencies": [
+    "subtask_01_create_calendar_store.json",
+    "subtask_02_create_event_types_and_mapper.json"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create week navigation header",
+      "details": [
+        "Create src/components/calendar/AgendaView.tsx",
+        "Render horizontal scrollable week day selector",
+        "Show 7 days from selected date or current week",
+        "Highlight current selected day with primary color ring",
+        "Match artifact styling (w-[3.5rem], h-[4rem], rounded-xl)"
+      ]
+    },
+    {
+      "step": 2,
+      "description": "Implement day-grouped event list",
+      "details": [
+        "Fetch events for each day in the week",
+        "Group events by day with sticky day headers",
+        "Show event count per day in header",
+        "Display 'Today' badge on current day header"
+      ]
+    },
+    {
+      "step": 3,
+      "description": "Render event cards",
+      "details": [
+        "Show time (12-hour format with AM/PM)",
+        "Show event type badge (Meeting, Deliverable, Reminder, Admin)",
+        "Show event title",
+        "Optional: show subtitle (place, contact, status)",
+        "Optional: show entity icon/avatar",
+        "Connect cards with timeline visual (vertical line + dots)"
+      ]
+    },
+    {
+      "step": 4,
+      "description": "Add empty state and past events",
+      "details": [
+        "Show 'No events scheduled' for empty days",
+        "Style past events with reduced opacity",
+        "Add visual distinction for completed events"
+      ]
+    }
+  ],
+  "deliverables": [
+    "src/components/calendar/AgendaView.tsx"
+  ],
+  "validation": [
+    "Week navigation shows correct 7 days",
+    "Day selection updates view",
+    "Events grouped by day with sticky headers",
+    "Timeline visual connects events",
+    "Event cards show correct type, time, title",
+    "Empty state displays correctly",
+    "Past events are visually distinct"
+  ],
+  "notes": [
+    "Reference: artifacts/calendar/calendar_&_agenda_view_1",
+    "Use date-fns: format, isSameDay, isToday",
+    "Timeline uses absolute positioning or borders",
+    "Scrollable week header with no-scrollbar class"
+  ]
+}

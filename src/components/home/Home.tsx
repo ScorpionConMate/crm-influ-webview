@@ -89,7 +89,7 @@ export function Home() {
       </section>
 
       <section>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-4 gap-4">
           <button className="flex flex-col items-center gap-3 group cursor-pointer">
             <div className="flex items-center justify-center h-16 w-16 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm group-active:scale-95 transition-all group-hover:border-cyan-500/50 group-hover:shadow-md group-hover:shadow-cyan-500/10">
               <CalendarIcon className="h-8 w-8 text-cyan-500" />

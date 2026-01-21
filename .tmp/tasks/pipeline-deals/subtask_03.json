@@ -1,0 +1,69 @@
+{
+  "id": "subtask_03",
+  "taskId": "pipeline-deals-module",
+  "title": "Create DealDetail.tsx component with all sections",
+  "description": "Create comprehensive deal detail view showing summary, deliverables, payments, and history timeline",
+  "priority": "high",
+  "status": "pending",
+  "estimatedHours": 5,
+  "dependencies": ["subtask_01"],
+  "assignee": null,
+  "steps": [
+    {
+      "step": 1,
+      "title": "Create DealDetail.tsx file structure",
+      "description": "Create src/components/pipeline/DealDetail.tsx with section containers"
+    },
+    {
+      "step": 2,
+      "title": "Implement deal summary section",
+      "description": "Show deal title, status badge, place/contact info, value, dates, notes"
+    },
+    {
+      "step": 3,
+      "title": "Implement deliverables section",
+      "description": "List deliverables with type, quantity, due date, status indicators"
+    },
+    {
+      "step": 4,
+      "title": "Implement payments section",
+      "description": "Show total amount, currency, payment method, invoice status, payment terms"
+    },
+    {
+      "step": 5,
+      "title": "Implement history timeline",
+      "description": "Create timeline component showing status changes, deliverable updates, payment milestones, notes, reminders"
+    },
+    {
+      "step": 6,
+      "title": "Add action buttons",
+      "description": "Edit deal, delete deal, add note, create reminder buttons with handlers"
+    },
+    {
+      "step": 7,
+      "title": "Add back navigation",
+      "description": "Back button to return to pipeline view"
+    }
+  ],
+  "acceptanceCriteria": [
+    "DealDetail shows all 4 main sections (summary, deliverables, payments, timeline)",
+    "Summary displays title, status, place, contact, value, dates, notes",
+    "Deliverables list shows type, description, quantity, due date, status",
+    "Payments section shows amount, currency, method, invoice status, terms",
+    "Timeline displays chronological history of events",
+    "Edit and delete buttons function correctly",
+    "Add note and create reminder buttons work",
+    "Navigation back to pipeline works"
+  ],
+  "filesToCreate": [
+    "src/components/pipeline/DealDetail.tsx"
+  ],
+  "filesToModify": [
+    "src/router/index.tsx (add deal detail route)"
+  ],
+  "validationCommands": [
+    "npm run lint",
+    "npx tsc --noEmit"
+  ],
+  "notes": "Will need to create or integrate timeline component. Use card, badge, button, separator from ui components."
+}

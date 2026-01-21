@@ -1,0 +1,46 @@
+{
+  "id": "subtask-06",
+  "title": "Create VisitSummary component",
+  "description": "Post-visit summary screen with stats, notes preview, media strip, and actions",
+  "status": "pending",
+  "estimatedHours": 3,
+  "dependencies": ["subtask-04"],
+  "tasks": [
+    "Create src/components/checkin/VisitSummary.tsx",
+    "Implement header with back button and 'Summary' title",
+    "Add success header with checkmark icon",
+    "Show visit duration in stats grid",
+    "Show visit status (Pending/Complete)",
+    "Show voice memo count",
+    "Show photos captured count",
+    "Add notes preview card with edit button",
+    "Implement media strip with horizontal scroll",
+    "Show thumbnails of captured photos",
+    "Add 'Save & Sync' primary action",
+    "Add 'Discard Session' secondary action",
+    "End visit in visitsStore on save",
+    "Navigate to home/previous screen"
+  ],
+  "acceptanceCriteria": [
+    "Success header shows 'Session Complete!'",
+    "Stats grid shows duration, status, voice count, photo count",
+    "Notes preview shows truncated text",
+    "Edit button opens notes editor",
+    "Media strip shows all captured photos",
+    "Save & Sync finalizes visit",
+    "Discard removes incomplete visit",
+    "Mobile-first design",
+    "Dark mode support",
+    "Visit endTime is set on save"
+  ],
+  "files": [
+    "src/components/checkin/VisitSummary.tsx"
+  ],
+  "artifacts": [
+    "@artifacts/check-in/visit_session_summary"
+  ],
+  "validation": {
+    "runLint": true,
+    "runTypecheck": true
+  }
+}

@@ -31,9 +31,9 @@ export function BottomTabs() {
   const { pathname } = useLocation();
 
   const tabs = [
-    { id: "home", label: "Home", icon: HomeIcon, path: "/" },
     { id: "pipeline", label: "Pipeline", icon: KanbanIcon, path: "/pipeline" },
-    { id: "places", label: "Places", icon: MapPinIcon, path: "/places" },
+    { id: "places", label: "Directory", icon: MapPinIcon, path: "/places" },
+    { id: "home", label: "Home", icon: HomeIcon, path: "/" },
     { id: "calendar", label: "Calendar", icon: CalendarIcon, path: "/calendar" },
     { id: "more", label: "More", icon: MoreVerticalIcon, path: "/more" },
   ];

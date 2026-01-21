@@ -1,0 +1,62 @@
+{
+  "id": "subtask_04",
+  "title": "Update remindersStore for quick reminder creation",
+  "description": "Extend remindersStore to ensure quick reminder creation works correctly with entity linking",
+  "estimatedTime": "0.15 day",
+  "status": "pending",
+  "priority": "medium",
+  "dependencies": ["subtask_02", "subtask_03"],
+  "files": [
+    {
+      "path": "src/stores/remindersStore.ts",
+      "action": "update",
+      "description": "Verify remindersStore has all required methods for quick reminder functionality"
+    }
+  ],
+  "implementationDetails": {
+    "existingMethods": [
+      "addReminder (✓ exists)",
+      "updateReminder (✓ exists)",
+      "deleteReminder (✓ exists)",
+      "toggleComplete (exists as markAsCompleted/markAsPending)",
+      "getReminderById (✓ exists)",
+      "getRemindersByPlace (✓ exists)",
+      "getRemindersByContact (✓ exists)",
+      "getRemindersByDeal (✓ exists)",
+      "getUpcomingReminders (✓ exists)"
+    ],
+    "schemaCheck": {
+      "reminderSchema": {
+        "title": "z.string().min(1)",
+        "description": "z.string().optional()",
+        "dueDate": "z.date()",
+        "completed": "z.boolean().default(false)",
+        "priority": "z.enum(['low', 'medium', 'high']).default('medium')",
+        "placeId": "z.string().uuid().optional()",
+        "contactId": "z.string().uuid().optional()",
+        "dealId": "z.string().uuid().optional()",
+        "visitId": "z.string().uuid().optional()",
+        "createdAt": "z.date()",
+        "updatedAt": "z.date()"
+      }
+    },
+    "validation": [
+      "Verify addReminder accepts Reminder type",
+      "Verify getRemindersByPlace filters by placeId",
+      "Verify getRemindersByContact filters by contactId",
+      "Verify getRemindersByDeal filters by dealId",
+      "Verify getUpcomingReminders sorts by date",
+      "Verify persistence works with zustand middleware"
+    ]
+  },
+  "validationCriteria": [
+    "addReminder method works correctly",
+    "getRemindersByPlace returns filtered results",
+    "getRemindersByContact returns filtered results",
+    "getRemindersByDeal returns filtered results",
+    "getUpcomingReminders returns sorted future reminders",
+    "Store persists to localStorage",
+    "Schema validation works correctly"
+  ],
+  "notes": "Most methods already exist in remindersStore. This subtask is for verification and ensuring compatibility with QuickReminder component."
+}

@@ -1,0 +1,42 @@
+{
+  "id": "subtask-03",
+  "title": "Create StartVisit component",
+  "description": "Place selection screen with optional deal picker, search, and manual check-in option",
+  "status": "pending",
+  "estimatedHours": 3,
+  "dependencies": ["subtask-01"],
+  "tasks": [
+    "Create src/components/checkin/StartVisit.tsx",
+    "Implement header with back button and date display",
+    "Add search input for places",
+    "Render place cards from placesStore",
+    "Show nearby indicator for geolocated places",
+    "Add optional deal selection within place cards",
+    "Implement 'Start Check-In' button on cards",
+    "Add 'Manual Check-In' CTA in footer",
+    "Handle place selection and visit start",
+    "Navigate to VisitNotes on check-in"
+  ],
+  "acceptanceCriteria": [
+    "Header shows 'Select Event' with date",
+    "Search filters places by name",
+    "Place cards show name, contact, time, location",
+    "Nearby places have pulsing indicator",
+    "Start Check-In button creates new visit via visitsStore",
+    "Optional deal picker shows active deals for place",
+    "Manual check-in opens place selection modal",
+    "Navigation flows to VisitNotes on success",
+    "Mobile-first responsive design",
+    "Dark mode support"
+  ],
+  "files": [
+    "src/components/checkin/StartVisit.tsx"
+  ],
+  "artifacts": [
+    "@artifacts/check-in/start_a_visit_check-in"
+  ],
+  "validation": {
+    "runLint": true,
+    "runTypecheck": true
+  }
+}

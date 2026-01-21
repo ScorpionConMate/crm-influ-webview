@@ -1,0 +1,57 @@
+{
+  "id": "subtask_02",
+  "taskId": "pipeline-deals-module",
+  "title": "Create DealStatusPicker.tsx component",
+  "description": "Create a bottom sheet/dialog component for changing deal status with support for lost reason when status = Lost",
+  "priority": "high",
+  "status": "pending",
+  "estimatedHours": 3,
+  "dependencies": ["subtask_01"],
+  "assignee": null,
+  "steps": [
+    {
+      "step": 1,
+      "title": "Create DealStatusPicker.tsx file",
+      "description": "Create src/components/pipeline/DealStatusPicker.tsx with AlertDialog/Sheet pattern"
+    },
+    {
+      "step": 2,
+      "title": "Implement status options UI",
+      "description": "Display all status options with icons: Lead, Contacted, Negotiation, Confirmed, Delivered, Paid, Lost (reference artifact: @artifacts/pipelines/deal_status_management)"
+    },
+    {
+      "step": 3,
+      "title": "Add lost reason input field",
+      "description": "When status = Lost is selected, show optional text input for lost reason"
+    },
+    {
+      "step": 4,
+      "title": "Integrate with dealsStore",
+      "description": "Use updateDeal to change status and update lostReason if provided"
+    },
+    {
+      "step": 5,
+      "title": "Add visual feedback",
+      "description": "Highlight current status, show checkmark on selected status, animate transitions"
+    }
+  ],
+  "acceptanceCriteria": [
+    "DealStatusPicker displays all 7 status options",
+    "Current status is highlighted with checkmark",
+    "Lost status triggers lost reason input field",
+    "Status change updates store via updateDeal",
+    "Component uses AlertDialog from ui components",
+    "Matches design reference from artifact (bottom sheet style with icons)"
+  ],
+  "filesToCreate": [
+    "src/components/pipeline/DealStatusPicker.tsx"
+  ],
+  "filesToModify": [
+    "src/stores/dealsStore.ts (may need update for status history)"
+  ],
+  "validationCommands": [
+    "npm run lint",
+    "npx tsc --noEmit"
+  ],
+  "notes": "Use AlertDialog from @base-ui/react/radix-ui. Match artifact design: bottom sheet with status icons and checkmark indicator."
+}

@@ -1,0 +1,32 @@
+{
+  "id": "places-contacts-10",
+  "seq": "10",
+  "title": "Add navigation/routes for new components",
+  "status": "completed",
+  "depends_on": ["04", "05", "06", "07", "08", "09"],
+  "parallel": false,
+  "context_files": [
+    "src/App.tsx",
+    "src/main.tsx"
+  ],
+  "acceptance_criteria": [
+    "Route for /places shows unified list view",
+    "Route for /places/new shows AddPlaceStep1 then Step2",
+    "Route for /places/:id shows PlaceDetail",
+    "Route for /contacts/new shows AddContact",
+    "Route for /contacts/:id shows ContactDetail",
+    "Back buttons in detail views navigate to list",
+    "URL parameters properly parsed",
+    "Browser history works correctly",
+    "Navigation state persists on refresh"
+  ],
+  "deliverables": [
+    "Updated src/router/index.tsx with routing",
+    "Created CreatePlace wrapper component",
+    "Navigation components/buttons integrated"
+  ],
+  "agent_id": "coder-agent",
+  "started_at": "2025-01-21T15:30:00Z",
+  "completed_at": "2025-01-21T16:00:00Z",
+  "completion_summary": "Added routes to router/index.tsx: /places/new (CreatePlace wrapper for two-step flow), /places/$id (PlaceDetail), /contacts/new (AddContact), /contacts/$id (ContactDetail). Created CreatePlace wrapper component managing Step1/Step2 flow with state. URL parameters properly typed via TanStack Router. TypeScript validation passed."
+}

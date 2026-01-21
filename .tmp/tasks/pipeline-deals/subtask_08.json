@@ -1,0 +1,53 @@
+{
+  "id": "subtask_08",
+  "taskId": "pipeline-deals-module",
+  "title": "Add note and reminder creation from DealDetail",
+  "description": "Implement add note and create reminder actions in DealDetail, integrate with remindersStore",
+  "priority": "medium",
+  "status": "pending",
+  "estimatedHours": 2,
+  "dependencies": ["subtask_03"],
+  "assignee": null,
+  "steps": [
+    {
+      "step": 1,
+      "title": "Add note input to DealDetail",
+      "description": "Add textarea for adding notes to deal"
+    },
+    {
+      "step": 2,
+      "title": "Save notes to deal",
+      "description": "Update deal.notes when note is added (append to existing notes or use array)"
+    },
+    {
+      "step": 3,
+      "title": "Add quick reminder button",
+      "description": "Button to open QuickReminder component (from Group F) with dealId pre-filled"
+    },
+    {
+      "step": 4,
+      "title": "Link reminders to deal",
+      "description": "Ensure remindersStore supports dealId linking"
+    },
+    {
+      "step": 5,
+      "title": "Display related reminders in timeline",
+      "description": "Show reminders linked to this deal in the timeline section"
+    }
+  ],
+  "acceptanceCriteria": [
+    "Add note input works and appends to deal.notes",
+    "Note addition appears in timeline as 'note_added' event",
+    "Create reminder button opens QuickReminder with dealId linked",
+    "Reminders linked to deal appear in timeline",
+    "Reminder completion status reflected in timeline"
+  ],
+  "filesToModify": [
+    "src/components/pipeline/DealDetail.tsx"
+  ],
+  "validationCommands": [
+    "npm run lint",
+    "npx tsc --noEmit"
+  ],
+  "notes": "QuickReminder component from Group F may not exist yet. Mock or skip for now. Reminders can be linked via dealId in reminderSchema (already exists)."
+}

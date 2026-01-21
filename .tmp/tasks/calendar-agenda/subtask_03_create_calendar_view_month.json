@@ -1,0 +1,73 @@
+{
+  "id": "subtask_03",
+  "name": "Create CalendarView.tsx month view",
+  "status": "pending",
+  "priority": "high",
+  "estimatedEffort": "2 hours",
+  "description": "Implement month calendar view with day grid, event indicators, and day selection",
+  "dependencies": [
+    "subtask_01_create_calendar_store.json",
+    "subtask_02_create_event_types_and_mapper.json"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create basic month grid structure",
+      "details": [
+        "Create src/components/calendar/CalendarView.tsx",
+        "Render 7-column grid for weekdays (Sun-Sat)",
+        "Render day cells with padding days from previous/next month",
+        "Use date-fns: startOfMonth, endOfMonth, eachDayOfInterval",
+        "Apply artifact styling (min-h-[14vh], borders, hover states)"
+      ]
+    },
+    {
+      "step": 2,
+      "description": "Add event indicators (dots) on days",
+      "details": [
+        "Query events for each day using eventMapper",
+        "Render up to 3 colored dots per day",
+        "Dot colors: primary (meetings), orange (deliverables), purple (reminders), gray (admin)",
+        "Overflow indicator if >3 events"
+      ]
+    },
+    {
+      "step": 3,
+      "description": "Implement day selection and states",
+      "details": [
+        "Highlight selected day with primary background and white text",
+        "Highlight today with different styling",
+        "Handle click events to update selectedDate in calendarStore",
+        "Show day detail sheet on day selection"
+      ]
+    },
+    {
+      "step": 4,
+      "description": "Add month navigation header",
+      "details": [
+        "Display current month/year (e.g., 'November 2023')",
+        "Add prev/next chevron buttons",
+        "Add 'Today' button",
+        "Update calendarStore on navigation"
+      ]
+    }
+  ],
+  "deliverables": [
+    "src/components/calendar/CalendarView.tsx"
+  ],
+  "validation": [
+    "Grid displays correct days for current month",
+    "Previous/next month days shown with different styling",
+    "Event indicators show correct colors and count",
+    "Selected day is visually highlighted",
+    "Today is visually distinct",
+    "Navigation updates month correctly",
+    "Clicking day triggers day detail view"
+  ],
+  "notes": [
+    "Reference: artifacts/calendar/calendar_&_agenda_view_2",
+    "Use cn() utility for className merging",
+    "Follow shadcn/ui patterns for components",
+    "Ensure responsive sizing for mobile"
+  ]
+}

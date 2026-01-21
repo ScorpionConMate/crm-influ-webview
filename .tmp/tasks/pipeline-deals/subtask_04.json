@@ -1,0 +1,57 @@
+{
+  "id": "subtask_04",
+  "taskId": "pipeline-deals-module",
+  "title": "Create or integrate Timeline component for deal history",
+  "description": "Create reusable Timeline component to display deal history events (status changes, deliverables, payments, notes, reminders)",
+  "priority": "high",
+  "status": "pending",
+  "estimatedHours": 3,
+  "dependencies": ["subtask_01"],
+  "assignee": null,
+  "steps": [
+    {
+      "step": 1,
+      "title": "Check for existing timeline component",
+      "description": "Search for existing Timeline component in codebase"
+    },
+    {
+      "step": 2,
+      "title": "Create Timeline component if needed",
+      "description": "Create src/components/pipeline/Timeline.tsx or src/components/ui/timeline.tsx if not exists"
+    },
+    {
+      "step": 3,
+      "title": "Define timeline event structure",
+      "description": "Use timelineEventSchema from schemas.ts (already exists: deal_created, deal_status_changed, deliverable_added, payment_added, etc.)"
+    },
+    {
+      "step": 4,
+      "title": "Implement timeline item renderer",
+      "description": "Create TimelineItem component showing event type, icon, timestamp, title, description"
+    },
+    {
+      "step": 5,
+      "title": "Add filtering and sorting",
+      "description": "Sort events by timestamp (newest first), filter by event type if needed"
+    }
+  ],
+  "acceptanceCriteria": [
+    "Timeline component displays events in chronological order",
+    "Each event shows icon, type label, timestamp, title, description",
+    "Timeline uses icons from lucide-react appropriate for each event type",
+    "Timeline is reusable across different entity types (deal, place, contact)",
+    "Handles empty state gracefully",
+    "Timestamps are formatted human-readably (e.g., '2h ago', '1d ago')"
+  ],
+  "filesToCreate": [
+    "src/components/pipeline/Timeline.tsx"
+  ],
+  "filesToModify": [
+    "src/lib/zod/schemas.ts (schemas already exist, verify timelineEventSchema)"
+  ],
+  "validationCommands": [
+    "npm run lint",
+    "npx tsc --noEmit"
+  ],
+  "notes": "timelineEventSchema already exists in schemas.ts. Use Lucide icons: CircleDotIcon, CheckCircleIcon, ClockIcon, etc."
+}

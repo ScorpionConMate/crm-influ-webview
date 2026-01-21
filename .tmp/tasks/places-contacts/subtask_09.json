@@ -1,0 +1,35 @@
+{
+  "id": "places-contacts-09",
+  "seq": "09",
+  "title": "Update Places.tsx for unified list with contacts",
+  "status": "completed",
+  "depends_on": ["01", "02", "06", "08"],
+  "parallel": false,
+  "context_files": [
+    "src/App.tsx",
+    "src/stores/placesStore.ts",
+    "src/stores/contactsStore.ts",
+    "@artifacts/places/places_&_contacts_unified_list",
+    "@artifacts/places/places_empty_state",
+    "@artifacts/places/filtered_places_list_view"
+  ],
+  "acceptance_criteria": [
+    "Unified list matches @artifacts/places/places_&_contacts_unified_list design",
+    "Shows both places and contacts in single view",
+    "Filter/toggle for places only, contacts only, or all",
+    "Empty state matches @artifacts/places/places_empty_state when no data",
+    "Filtered list view works correctly",
+    "Clicking item navigates to respective detail view",
+    "Add buttons for new place and new contact",
+    "Responsive mobile-first design",
+    "Uses shadcn/ui card, button, input, select components"
+  ],
+  "deliverables": [
+    "Updated src/App.tsx with unified Places view",
+    "Or new src/components/Places.tsx if separating from App.tsx"
+  ],
+  "agent_id": "coder-agent",
+  "started_at": "2025-01-21T15:00:00Z",
+  "completed_at": "2025-01-21T15:30:00Z",
+  "completion_summary": "Enhanced Places.tsx with header, search bar, filter toggle, unified list with navigation to detail views, category badges, enhanced empty state matching artifacts, add buttons for places and contacts. Navigation uses useNavigate from TanStack Router. TypeScript validation passed."
+}

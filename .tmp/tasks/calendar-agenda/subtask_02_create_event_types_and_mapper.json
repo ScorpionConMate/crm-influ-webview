@@ -1,0 +1,60 @@
+{
+  "id": "subtask_02",
+  "name": "Create event types and mapper utilities",
+  "status": "pending",
+  "priority": "high",
+  "estimatedEffort": "1 hour",
+  "description": "Define calendar event types and create mapper functions to transform reminders, deals, visits into calendar events",
+  "dependencies": [
+    "subtask_01_create_calendar_store.json"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Define CalendarEvent types in src/lib/calendar/eventTypes.ts",
+      "details": [
+        "Create CalendarEvent interface with id, title, type, date, time, status, entityId, entityType",
+        "Create EventType enum: 'meeting', 'deliverable', 'reminder', 'visit', 'admin', 'deal'",
+        "Define color mapping for each event type",
+        "Define EventStatus enum: 'upcoming', 'today', 'past', 'completed'"
+      ]
+    },
+    {
+      "step": 2,
+      "description": "Create event mapper in src/lib/calendar/eventMapper.ts",
+      "details": [
+        "mapReminderToEvent() - transforms Reminder to CalendarEvent",
+        "mapVisitToEvent() - transforms Visit to CalendarEvent",
+        "mapDeliverableToEvent() - transforms Deliverable to CalendarEvent",
+        "mapDealToEvent() - transforms Deal to CalendarEvent (uses startDate, endDate)",
+        "mapPaymentToEvent() - transforms PaymentInfo to CalendarEvent"
+      ]
+    },
+    {
+      "step": 3,
+      "description": "Create aggregate functions",
+      "details": [
+        "getAllEventsForDate(date) - queries all stores and aggregates events",
+        "getAllEventsForMonth(date) - returns all events in month range",
+        "sortEventsByTime(events) - sorts by time, then priority"
+      ]
+    }
+  ],
+  "deliverables": [
+    "src/lib/calendar/eventTypes.ts",
+    "src/lib/calendar/eventMapper.ts"
+  ],
+  "validation": [
+    "Event types are properly typed with TypeScript",
+    "Mappers transform all source types correctly",
+    "Date filtering works correctly",
+    "Events are sorted chronologically",
+    "Event metadata includes source entity IDs for navigation"
+  ],
+  "notes": [
+    "Imports from stores: useRemindersStore, useVisitsStore, useDealsStore",
+    "Deal deliverables need to be accessed via deal details",
+    "Use date-fns for date comparisons",
+    "Color mapping should match artifact design (primary, orange, purple, gray)"
+  ]
+}

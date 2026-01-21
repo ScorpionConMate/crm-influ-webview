@@ -1,0 +1,55 @@
+{
+  "id": "subtask_05",
+  "taskId": "pipeline-deals-module",
+  "title": "Update Pipeline.tsx to show deal details on click",
+  "description": "Modify Pipeline component and DealCard to navigate to deal detail view when clicked, integrate DealStatusPicker",
+  "priority": "high",
+  "status": "pending",
+  "estimatedHours": 2,
+  "dependencies": ["subtask_02", "subtask_03"],
+  "assignee": null,
+  "steps": [
+    {
+      "step": 1,
+      "title": "Add navigation to DealDetail",
+      "description": "Import and use useNavigate from @tanstack/react-router to navigate to deal detail on card click"
+    },
+    {
+      "step": 2,
+      "title": "Add deal detail route",
+      "description": "Update router/index.tsx to add /pipeline/:id route for DealDetail component"
+    },
+    {
+      "step": 3,
+      "title": "Add Change Status button to DealCard",
+      "description": "Add button that opens DealStatusPicker dialog (matches artifact design)"
+    },
+    {
+      "step": 4,
+      "title": "Pass deal ID to DealDetail",
+      "description": "Ensure DealDetail receives dealId from route params and fetches deal from store"
+    },
+    {
+      "step": 5,
+      "title": "Handle deal not found state",
+      "description": "Show error or redirect if deal doesn't exist"
+    }
+  ],
+  "acceptanceCriteria": [
+    "Clicking DealCard navigates to DealDetail view",
+    "/pipeline/:id route works with dynamic deal IDs",
+    "DealCard has 'Change Status' button",
+    "Change Status button opens DealStatusPicker",
+    "DealDetail loads correct deal by ID",
+    "Deal not found shows appropriate error/redirect"
+  ],
+  "filesToModify": [
+    "src/components/pipeline/Pipeline.tsx",
+    "src/router/index.tsx"
+  ],
+  "validationCommands": [
+    "npm run lint",
+    "npx tsc --noEmit"
+  ],
+  "notes": "DealCard already exists in Pipeline.tsx as inline component. Extract to separate file if needed."
+}
