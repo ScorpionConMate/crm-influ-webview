@@ -7,7 +7,7 @@ export function TopBar() {
 
   const titles: Record<string, string> = {
     "/": "Dashboard",
-    "/places": "Places",
+    "/places": "Directory",
     "/contacts": "Contacts",
     "/pipeline": "Pipeline",
     "/calendar": "Calendar",
@@ -17,7 +17,7 @@ export function TopBar() {
   const title = titles[pathname] || "CRM";
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:border-slate-800 dark:bg-slate-950/95">
+    <header className="z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur supports-backdrop-filter:bg-white/60 dark:border-slate-800 dark:bg-slate-950/95">
       <div className="flex h-16 items-center justify-between px-4">
         <h1 className="text-lg font-semibold text-slate-900 dark:text-slate-50">
           {title}
@@ -41,8 +41,8 @@ export function BottomTabs() {
   const isActive = (path: string) => pathname === path;
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:border-slate-800 dark:bg-slate-950/95">
-      <div className="mx-auto flex h-16 max-w-[430px] items-center justify-around px-4">
+    <nav className="z-50 border-t border-slate-200 bg-white/95 backdrop-blur supports-backdrop-filter:bg-white/60 dark:border-slate-800 dark:bg-slate-950/95">
+      <div className="mx-auto flex h-16 max-w-107.5 items-center justify-around px-4">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           return (

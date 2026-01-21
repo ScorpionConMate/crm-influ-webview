@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { type Visit } from "@/lib/zod/schemas";
+import { type Visit, type VoiceMemo, type Photo } from "@/lib/zod/schemas";
 
 interface VisitsStore {
   visits: Visit[];
@@ -10,10 +10,14 @@ interface VisitsStore {
   updateVisit: (id: string, updates: Partial<Visit>) => void;
   deleteVisit: (id: string) => void;
   setActiveVisit: (visit: Visit | null) => void;
+  updateActiveVisit: (updates: Partial<Visit>) => void;
   startVisit: (placeId: string, dealId?: string) => Visit;
   endVisit: (visitId: string) => void;
   addNoteToVisit: (visitId: string, note: string) => void;
+  addVoiceMemoToVisit: (visitId: string, memo: VoiceMemo) => void;
+  addPhotoToVisit: (visitId: string, photo: Photo) => void;
   getVisitsByPlace: (placeId: string) => Visit[];
+  getActiveVisitDuration: () => string;
 }
 
 export const useVisitsStore = create<VisitsStore>()(
@@ -38,12 +42,59 @@ export const useVisitsStore = create<VisitsStore>()(
           dealId,
           startTime: new Date(),
           notes: [],
+          voiceMemos: [],
+          photos: [],
           createdAt: new Date(),
           updatedAt: new Date(),
         };
         set({ activeVisit: visit });
         get().addVisit(visit);
         return visit;
+      },
+      updateActiveVisit: (updates) => set((state) => ({
+        activeVisit: state.activeVisit
+          ? { ...state.activeVisit, ...updates, updatedAt: new Date() }
+          : null,
+      })),
+      addVoiceMemoToVisit: (visitId, memo) => set((state) => ({
+        visits: state.visits.map((v) =>
+          v.id === visitId
+            ? { ...v, voiceMemos: [...v.voiceMemos, memo], updatedAt: new Date() }
+            : v
+        ),
+        activeVisit: state.activeVisit?.id === visitId
+          ? {
+              ...state.activeVisit,
+              voiceMemos: [...state.activeVisit.voiceMemos, memo],
+              updatedAt: new Date(),
+            }
+          : state.activeVisit,
+      })),
+      addPhotoToVisit: (visitId, photo) => set((state) => ({
+        visits: state.visits.map((v) =>
+          v.id === visitId
+            ? { ...v, photos: [...v.photos, photo], updatedAt: new Date() }
+            : v
+        ),
+        activeVisit: state.activeVisit?.id === visitId
+          ? {
+              ...state.activeVisit,
+              photos: [...state.activeVisit.photos, photo],
+              updatedAt: new Date(),
+            }
+          : state.activeVisit,
+      })),
+      getActiveVisitDuration: () => {
+        const { activeVisit } = get();
+        if (!activeVisit) return "0m";
+        const endTime = activeVisit.endTime || new Date();
+        const durationMs = endTime.getTime() - activeVisit.startTime.getTime();
+        const hours = Math.floor(durationMs / (1000 * 60 * 60));
+        const minutes = Math.floor((durationMs % (1000 * 60 * 60)) / (1000 * 60));
+        if (hours > 0) {
+          return `${hours}h ${minutes}m`;
+        }
+        return `${minutes}m`;
       },
       endVisit: (visitId) => set((state) => ({
         visits: state.visits.map((v) =>

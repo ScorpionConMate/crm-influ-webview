@@ -51,24 +51,6 @@ export const dealStatusSchema = z.enum([
   "lost",
 ]);
 
-export const dealSchema = z.object({
-  id: z.string().uuid(),
-  placeId: z.string().uuid().optional(),
-  contactId: z.string().uuid().optional(),
-  title: z.string().min(1),
-  status: dealStatusSchema,
-  estimatedValue: z.number().min(0).optional(),
-  actualValue: z.number().min(0).optional(),
-  currency: z.string().default("USD"),
-  startDate: z.date().optional(),
-  endDate: z.date().optional(),
-  lostReason: z.string().optional(),
-  notes: z.string().optional(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
-});
-
-export type Deal = z.infer<typeof dealSchema>;
 export type DealStatus = z.infer<typeof dealStatusSchema>;
 
 export const deliverableSchema = z.object({
@@ -101,6 +83,27 @@ export const paymentInfoSchema = z.object({
 
 export type PaymentInfo = z.infer<typeof paymentInfoSchema>;
 
+export const dealSchema = z.object({
+  id: z.string().uuid(),
+  placeId: z.string().uuid().optional(),
+  contactId: z.string().uuid().optional(),
+  title: z.string().min(1),
+  status: dealStatusSchema,
+  estimatedValue: z.number().min(0).optional(),
+  actualValue: z.number().min(0).optional(),
+  currency: z.string().default("USD"),
+  startDate: z.date().optional(),
+  endDate: z.date().optional(),
+  lostReason: z.string().optional(),
+  notes: z.string().optional(),
+  deliverables: z.array(deliverableSchema).default([]),
+  payments: z.array(paymentInfoSchema).default([]),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
+
+export type Deal = z.infer<typeof dealSchema>;
+
 export const reminderSchema = z.object({
   id: z.string().uuid(),
   title: z.string().min(1),
@@ -119,6 +122,24 @@ export const reminderSchema = z.object({
 
 export type Reminder = z.infer<typeof reminderSchema>;
 
+export const voiceMemoSchema = z.object({
+  id: z.string().uuid(),
+  url: z.string().url(),
+  duration: z.number().min(0),
+  timestamp: z.date(),
+  visitId: z.string().uuid().optional(),
+});
+
+export type VoiceMemo = z.infer<typeof voiceMemoSchema>;
+
+export const photoSchema = z.object({
+  id: z.string().uuid(),
+  url: z.string().url(),
+  timestamp: z.date(),
+});
+
+export type Photo = z.infer<typeof photoSchema>;
+
 export const visitSchema = z.object({
   id: z.string().uuid(),
   placeId: z.string().uuid(),
@@ -126,7 +147,8 @@ export const visitSchema = z.object({
   startTime: z.date(),
   endTime: z.date().optional(),
   notes: z.array(z.string()).default([]),
-  voiceMemoUrl: z.string().url().optional(),
+  voiceMemos: z.array(voiceMemoSchema).default([]),
+  photos: z.array(photoSchema).default([]),
   summary: z.string().optional(),
   createdAt: z.date(),
   updatedAt: z.date(),

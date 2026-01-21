@@ -32,6 +32,7 @@ When performing these actions, ALWAYS invoke the corresponding skill FIRST:
 | Writing Playwright E2E tests | `playwright` |
 | Writing React components | `react-19` |
 | Writing TypeScript types/interfaces | `typescript` |
+| Designing UI/UX | `ui-ux-pro-max` |
 
 ---
 

@@ -1,134 +1,154 @@
-import { useState } from "react";
-import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, isToday, isSameMonth } from "date-fns";
-import { ChevronLeftIcon, ChevronRightIcon, CalendarIcon, ClockIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useState, useEffect, useCallback } from "react";
+import { useCalendarStore } from "@/stores/calendarStore";
+import { useCalendarStoreSubscription } from "@/hooks/useCalendarEvents";
+import { CalendarView } from "./CalendarView";
+import { AgendaView } from "./AgendaView";
+import { DayDetail } from "./DayDetail";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+
+/**
+ * Keyboard shortcuts hook
+ */
+function useKeyboardShortcuts(
+  selectedDate: Date | null,
+  setSelectedDate: (date: Date) => void,
+  viewMode: "month" | "agenda",
+  onDismissDetail: () => void,
+  onToggleView: () => void
+) {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Ignore if user is typing in an input
+      const target = e.target as HTMLElement;
+      if (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable) {
+        return;
+      }
+
+      // Escape: close DayDetail
+      if (e.key === "Escape") {
+        onDismissDetail();
+        return;
+      }
+
+      // T: go to today
+      if (e.key === "t" || e.key === "T") {
+        const today = new Date();
+        setSelectedDate(today);
+        return;
+      }
+
+      // Tab: toggle between month and agenda views
+      if (e.key === "Tab" && !e.shiftKey) {
+        onToggleView();
+        e.preventDefault();
+        return;
+      }
+
+      // Navigation shortcuts - only if a date is selected
+      if (!selectedDate) {
+        return;
+      }
+
+      const newDate = new Date(selectedDate);
+
+      switch (e.key) {
+        case "ArrowLeft":
+          newDate.setDate(newDate.getDate() - 1);
+          setSelectedDate(newDate);
+          e.preventDefault();
+          break;
+        case "ArrowRight":
+          newDate.setDate(newDate.getDate() + 1);
+          setSelectedDate(newDate);
+          e.preventDefault();
+          break;
+        case "ArrowUp":
+          newDate.setDate(newDate.getDate() - 7);
+          setSelectedDate(newDate);
+          e.preventDefault();
+          break;
+        case "ArrowDown":
+          newDate.setDate(newDate.getDate() + 7);
+          setSelectedDate(newDate);
+          e.preventDefault();
+          break;
+        case "Enter":
+        case " ":
+          // Day is already selected, this is a no-op
+          e.preventDefault();
+          break;
+        default:
+          break;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedDate, setSelectedDate, onDismissDetail, onToggleView]);
+}
 
 export function Calendar() {
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-  const [view, setView] = useState<"calendar" | "agenda">("calendar");
+  const { viewMode, setViewMode, selectedDate, setSelectedDate } = useCalendarStore();
+  const [isDayDetailVisible, setIsDayDetailVisible] = useState(false);
 
-  const monthStart = startOfMonth(currentDate);
-  const monthEnd = endOfMonth(currentDate);
-  const days = eachDayOfInterval({ start: monthStart, end: monthEnd });
+  // Subscribe to store changes to trigger re-renders when events update
+  useCalendarStoreSubscription();
 
-  const goToPreviousMonth = () => {
-    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
-  };
+  // Show DayDetail when a date is selected
+  if (selectedDate) {
+    setIsDayDetailVisible(true);
+  }
 
-  const goToNextMonth = () => {
-    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
-  };
+  // Handle view mode change
+  const handleViewModeChange = useCallback((newMode: string) => {
+    setViewMode(newMode as "month" | "agenda");
+  }, [setViewMode]);
 
-  const goToToday = () => {
-    setCurrentDate(new Date());
-    setSelectedDate(new Date());
-  };
+  // Handle view toggle for keyboard shortcut
+  const handleToggleView = useCallback(() => {
+    const newViewMode: "month" | "agenda" = viewMode === "month" ? "agenda" : "month";
+    setViewMode(newViewMode as "month" | "agenda");
+  }, [viewMode, setViewMode]);
+
+  // Handle DayDetail dismiss
+  const handleDayDetailDismiss = useCallback(() => {
+    setIsDayDetailVisible(false);
+    setSelectedDate(null);
+  }, [setSelectedDate]);
+
+  // Setup keyboard shortcuts - cast viewMode to correct type
+  useKeyboardShortcuts(
+    selectedDate,
+    setSelectedDate,
+    viewMode === "day-detail" ? "month" : viewMode,
+    handleDayDetailDismiss,
+    handleToggleView
+  );
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="px-4 py-3 flex items-center justify-between border-b border-slate-200 dark:border-slate-800">
-        <div className="flex items-center gap-4">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white">
-            {format(currentDate, "MMMM yyyy")}
-          </h2>
-          <div className="flex gap-1">
-            <button
-              onClick={goToPreviousMonth}
-              className="flex items-center justify-center w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-600 dark:text-slate-400"
-            >
-              <ChevronLeftIcon className="h-5 w-5" />
-            </button>
-            <button
-              onClick={goToNextMonth}
-              className="flex items-center justify-center w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-600 dark:text-slate-400"
-            >
-              <ChevronRightIcon className="h-5 w-5" />
-            </button>
-          </div>
-        </div>
-        <button
-          onClick={goToToday}
-          className="bg-cyan-500 hover:bg-cyan-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
-        >
-          Today
-        </button>
+    <div className="flex flex-col h-full relative">
+      {/* View mode toggle */}
+      <div className="flex-none px-4 pt-3 pb-2 bg-background border-b border-slate-200 dark:border-slate-800/50">
+        <Tabs value={viewMode} onValueChange={handleViewModeChange}>
+          <TabsList className="grid grid-cols-2 w-full max-w-xs mx-auto">
+            <TabsTrigger value="month">Month</TabsTrigger>
+            <TabsTrigger value="agenda">Agenda</TabsTrigger>
+          </TabsList>
+        </Tabs>
       </div>
+      <Tabs value={viewMode} onValueChange={handleViewModeChange}>
+        {/* Main content - render appropriate view based on viewMode */}
+        <TabsContent value="month" className="flex-1 m-0 outline-none overflow-hidden">
+          <CalendarView />
+        </TabsContent>
 
-      {view === "calendar" ? (
-        <>
-          <div className="px-4 py-3 grid grid-cols-7 gap-1">
-            {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-              <div
-                key={day}
-                className="text-center text-xs font-medium text-slate-400 dark:text-slate-500 py-2"
-              >
-                {day}
-              </div>
-            ))}
-          </div>
+        <TabsContent value="agenda" className="flex-1 m-0 outline-none overflow-hidden">
+          <AgendaView />
+        </TabsContent>
+      </Tabs>
 
-          <div className="px-4 grid grid-cols-7 gap-1">
-            {days.map((day, index) => {
-              const isCurrentMonth = isSameMonth(day, currentDate);
-              const isSelected = selectedDate ? isSameDay(day, selectedDate) : false;
-              const isDayToday = isToday(day);
-
-              return (
-                <button
-                  key={index}
-                  onClick={() => setSelectedDate(day)}
-                  disabled={!isCurrentMonth}
-                  className={cn(
-                    "aspect-square flex items-center justify-center text-sm font-medium rounded-lg transition-all",
-                    isCurrentMonth
-                      ? "text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800"
-                      : "text-slate-300 dark:text-slate-700",
-                    isSelected && "bg-cyan-500 text-white hover:bg-cyan-600",
-                    isDayToday && !isSelected && "font-bold"
-                  )}
-                >
-                  {day.getDate()}
-                </button>
-              );
-            })}
-          </div>
-        </>
-      ) : (
-        <div className="flex-1 overflow-y-auto px-4 py-6">
-          <div className="text-center py-20">
-            <ClockIcon className="h-16 w-16 text-slate-300 dark:text-slate-600 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
-              No events scheduled
-            </h3>
-            <p className="text-sm text-slate-500 dark:text-slate-400">
-              Select a date to view your agenda
-            </p>
-          </div>
-        </div>
-      )}
-
-      {selectedDate && (
-        <div className="sticky bottom-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
-                Selected Date
-              </p>
-              <p className="text-base font-semibold text-slate-900 dark:text-white">
-                {format(selectedDate, "EEEE, MMMM d, yyyy")}
-              </p>
-            </div>
-            <button
-              onClick={() => setView(view === "calendar" ? "agenda" : "calendar")}
-              className="flex items-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
-            >
-              <CalendarIcon className="h-4 w-4" />
-              {view === "calendar" ? "View Agenda" : "View Calendar"}
-            </button>
-          </div>
-        </div>
-      )}
+      {/* DayDetail overlay - appears when day is selected */}
+      <DayDetail isVisible={isDayDetailVisible && selectedDate !== null} onDismiss={handleDayDetailDismiss} />
     </div>
   );
 }

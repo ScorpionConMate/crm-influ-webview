@@ -133,7 +133,7 @@ export function AddPlaceStep1({ onCancel, onSuccess }: { onCancel?: () => void; 
   const isFormValid = formData.name && formData.address && formData.city && Object.keys(errors).length === 0
 
   return (
-    <div className="flex h-screen flex-col bg-background dark:bg-background">
+    <div className="flex min-h-full flex-col bg-background dark:bg-background">
       {/* Header */}
       <header className="flex-none border-b border-border bg-surface px-4 py-3 flex items-center justify-center relative">
         <h1 className="text-lg font-bold tracking-tight">Add New Place</h1>
@@ -145,7 +145,7 @@ export function AddPlaceStep1({ onCancel, onSuccess }: { onCancel?: () => void; 
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto pb-32">
+      <div className="flex-1 pb-4">
         <form onSubmit={handleSubmit} className="flex flex-col gap-6 px-4 pt-4">
           {/* Name Field */}
           <div className="flex flex-col gap-2">
@@ -267,10 +267,10 @@ export function AddPlaceStep1({ onCancel, onSuccess }: { onCancel?: () => void; 
         </form>
 
         <div className="h-6" />
-      </main>
+      </div>
 
       {/* Footer */}
-      <footer className="fixed bottom-0 left-0 right-0 p-4 bg-surface/80 backdrop-blur-md border-t border-border z-10">
+      <footer className="sticky bottom-0 left-0 right-0 p-4 bg-surface/80 backdrop-blur-md border-t border-border z-10">
         <div className="flex gap-3">
           {onCancel && (
             <Button
@@ -286,7 +286,7 @@ export function AddPlaceStep1({ onCancel, onSuccess }: { onCancel?: () => void; 
             type="submit"
             onClick={handleSubmit}
             disabled={!isFormValid || isSubmitting}
-            className={cn("h-14 rounded-xl", onCancel ? "flex-[2]" : "flex-1")}
+            className={cn("h-14 rounded-xl", onCancel ? "flex-2" : "flex-1")}
           >
             {isSubmitting ? "Creating..." : "Continue"}
           </Button>

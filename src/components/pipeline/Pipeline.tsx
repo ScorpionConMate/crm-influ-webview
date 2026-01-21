@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { useDealsStore } from "@/stores/dealsStore";
 import { usePlacesStore } from "@/stores/placesStore";
 import { useContactsStore } from "@/stores/contactsStore";
-import { type DealStatus } from "@/lib/zod/schemas";
-import { DollarSignIcon, MessageCircleIcon, MoreHorizontalIcon } from "lucide-react";
+import { type DealStatus, type Deal } from "@/lib/zod/schemas";
+import { DollarSignIcon, MessageCircleIcon, MoreHorizontalIcon, GitCompareArrowsIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { DealStatusPicker } from "./DealStatusPicker";
 
 const STAGES: Array<{ status: DealStatus; label: string }> = [
   { status: "lead", label: "Lead" },
@@ -101,7 +103,10 @@ export function Pipeline() {
   );
 }
 
-function DealCard({ deal, placeName, contactName }: { deal: { title: string; createdAt: Date; estimatedValue?: number }; placeName: string; contactName: string }) {
+function DealCard({ deal, placeName, contactName }: { deal: Deal; placeName: string; contactName: string }) {
+  const navigate = useNavigate();
+  const [showStatusPicker, setShowStatusPicker] = useState(false);
+
   const formatCurrency = (value?: number) => {
     if (!value) return "TBD";
     return `$${(value / 1000).toFixed(1)}k`;
@@ -118,56 +123,81 @@ function DealCard({ deal, placeName, contactName }: { deal: { title: string; cre
     return "Just now";
   };
 
+  const handleCardClick = () => {
+    navigate({ to: `/deals/${deal.id}` });
+  };
+
+  const handleStatusButtonClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowStatusPicker(true);
+  };
+
   return (
-    <div className="flex flex-col rounded-xl bg-slate-800 dark:bg-slate-800 p-4 shadow-lg active:scale-[0.98] transition-transform border border-slate-700 dark:border-slate-700">
-      <div className="flex items-start gap-4">
-        <div className="w-20 h-20 shrink-0 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center text-white text-2xl font-bold shadow-inner">
-          {placeName.charAt(0).toUpperCase()}
-        </div>
-        <div className="flex-1 min-w-0 flex flex-col justify-between h-20 py-0.5">
-          <div>
-            <div className="flex items-center justify-between mb-0.5">
-              <h3 className="text-base font-bold text-white leading-tight truncate">
-                {deal.title}
-              </h3>
-              <span className="text-[10px] font-medium text-cyan-400 uppercase tracking-wider">
-                {getTimeAgo(deal.createdAt)}
-              </span>
-            </div>
-            <p className="text-slate-300 text-sm font-normal truncate">
-              {placeName}
-            </p>
+    <>
+      <div
+        onClick={handleCardClick}
+        className="flex flex-col rounded-xl bg-slate-800 dark:bg-slate-800 p-4 shadow-lg active:scale-[0.98] transition-transform border border-slate-700 dark:border-slate-700 cursor-pointer"
+      >
+        <div className="flex items-start gap-4">
+          <div className="w-20 h-20 shrink-0 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center text-white text-2xl font-bold shadow-inner">
+            {placeName.charAt(0).toUpperCase()}
           </div>
-          <div className="flex items-center justify-between mt-auto gap-2">
-            {contactName && (
-              <div className="flex items-center gap-1 text-slate-400">
-                <MessageCircleIcon className="h-3.5 w-3.5" />
-                <span className="text-xs">
-                  {contactName}
+          <div className="flex-1 min-w-0 flex flex-col justify-between h-20 py-0.5">
+            <div>
+              <div className="flex items-center justify-between mb-0.5">
+                <h3 className="text-base font-bold text-white leading-tight truncate">
+                  {deal.title}
+                </h3>
+                <span className="text-[10px] font-medium text-cyan-400 uppercase tracking-wider">
+                  {getTimeAgo(deal.createdAt)}
                 </span>
               </div>
-            )}
-            <div className="flex items-center gap-1 text-cyan-400 font-bold text-base">
-              <DollarSignIcon className="h-5 w-5" />
-              <span>{formatCurrency(deal.estimatedValue)}</span>
+              <p className="text-slate-300 text-sm font-normal truncate">
+                {placeName}
+              </p>
+            </div>
+            <div className="flex items-center justify-between mt-auto gap-2">
+              {contactName && (
+                <div className="flex items-center gap-1 text-slate-400">
+                  <MessageCircleIcon className="h-3.5 w-3.5" />
+                  <span className="text-xs">
+                    {contactName}
+                  </span>
+                </div>
+              )}
+              <div className="flex items-center gap-1 text-cyan-400 font-bold text-base">
+                <DollarSignIcon className="h-5 w-5" />
+                <span>{formatCurrency(deal.estimatedValue)}</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="mt-4 pt-3 border-t border-slate-700 flex items-center justify-between">
-        <div className="flex items-center gap-1.5 text-slate-400">
-          <MessageCircleIcon className="h-4.5 w-4.5" />
-          <span className="text-xs">Drafting email</span>
+        <div className="mt-4 pt-3 border-t border-slate-700 flex items-center justify-between">
+          <div className="flex items-center gap-1.5 text-slate-400">
+            <MessageCircleIcon className="h-4.5 w-4.5" />
+            <span className="text-xs">Drafting email</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleStatusButtonClick}
+              className="text-cyan-400 font-medium text-sm hover:text-cyan-300 transition-colors flex items-center gap-1"
+            >
+              <GitCompareArrowsIcon className="h-3.5 w-3.5" />
+              Change Status
+            </button>
+            <button className="text-slate-400 hover:text-white transition-colors">
+              <MoreHorizontalIcon className="h-5 w-5" />
+            </button>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <button className="text-cyan-400 font-medium text-sm hover:text-cyan-300 transition-colors">
-            Add Note
-          </button>
-          <button className="text-slate-400 hover:text-white transition-colors">
-            <MoreHorizontalIcon className="h-5 w-5" />
-          </button>
-        </div>
       </div>
-    </div>
+
+      <DealStatusPicker
+        dealId={deal.id}
+        currentStatus={deal.status}
+        open={showStatusPicker}
+        onOpenChange={setShowStatusPicker}
+      />
+    </>
   );
 }

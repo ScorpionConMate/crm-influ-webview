@@ -4,18 +4,20 @@ import { FAB } from "./FAB";
 interface MobileShellProps {
   children: React.ReactNode;
   showFAB?: boolean;
+  hideTabs?: boolean;
+  showTopBar?: boolean;
 }
 
-export function MobileShell({ children, showFAB = true }: MobileShellProps) {
+export function MobileShell({ children, showFAB = true, hideTabs = false, showTopBar = true }: MobileShellProps) {
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50 dark:bg-slate-950">
-      <div className="mx-auto w-full max-w-[430px] min-w-[360px] flex-1 bg-white dark:bg-slate-900">
-        <TopBar />
-        <main className="pb-20 pt-4">
+    <div className="flex h-full flex-col overflow-hidden bg-slate-50 dark:bg-slate-950">
+      <div className="relative mx-auto flex h-full w-full max-w-107.5 min-w-90 flex-col bg-white dark:bg-slate-900">
+        {showTopBar && <TopBar />}
+        <main className="flex-1 overflow-y-auto pt-4">
           {children}
         </main>
-        <BottomTabs />
-        {showFAB && <FAB />}
+        {!hideTabs && <BottomTabs />}
+        {showFAB && !hideTabs && <FAB />}
       </div>
     </div>
   );

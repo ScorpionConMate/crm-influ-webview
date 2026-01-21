@@ -63,19 +63,6 @@ export function Places() {
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950">
-      {/* Header */}
-      <header className="sticky top-0 z-20 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-        <div className="flex items-center h-12 justify-between px-4">
-          <h1 className="text-slate-900 dark:text-white tracking-tight text-[28px] font-bold leading-tight">Directory</h1>
-          <button
-            onClick={handleAddPlace}
-            className="flex items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-500 dark:text-cyan-400 transition-colors"
-          >
-            <PlusIcon className="h-6 w-6" />
-          </button>
-        </div>
-      </header>
-
       {/* Search Bar */}
       <div className="sticky top-[48px] z-20 bg-white dark:bg-slate-900 px-4 py-2">
         <div className="flex w-full items-center rounded-lg h-12 bg-white dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-700">
@@ -285,10 +272,10 @@ function EmptyState({
   const message = searchQuery
     ? "Try adjusting your search query"
     : filter === "places"
-    ? "Add your first place to get started"
-    : filter === "contacts"
-    ? "Add your first contact to get started"
-    : "Add places and contacts to build your directory";
+      ? "Add your first place to get started"
+      : filter === "contacts"
+        ? "Add your first contact to get started"
+        : "Add places and contacts to build your directory";
 
   return (
     <div className="flex flex-1 flex-col items-center justify-center px-6 py-20 text-center">
