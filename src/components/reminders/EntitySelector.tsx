@@ -39,12 +39,15 @@ export function EntitySelector({
       {/* Place Selector */}
       <Field>
         <FieldLabel htmlFor="place-select">Place (Optional)</FieldLabel>
-        <Select value={selectedPlaceId} onValueChange={(value) => onSelectPlace(value || undefined)}>
+        <Select
+          value={selectedPlaceId || "none"}
+          onValueChange={(value) => onSelectPlace(value === "none" ? undefined : value)}
+        >
           <SelectTrigger id="place-select">
             <SelectValue placeholder="Select a place" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">No place selected</SelectItem>
+            <SelectItem value="none">No place selected</SelectItem>
             {places.map((place) => (
               <SelectItem key={place.id} value={place.id}>
                 {place.name}
@@ -57,12 +60,15 @@ export function EntitySelector({
       {/* Contact Selector */}
       <Field>
         <FieldLabel htmlFor="contact-select">Contact (Optional)</FieldLabel>
-        <Select value={selectedContactId} onValueChange={(value) => onSelectContact(value || undefined)}>
+        <Select
+          value={selectedContactId || "none"}
+          onValueChange={(value) => onSelectContact(value === "none" ? undefined : value)}
+        >
           <SelectTrigger id="contact-select">
             <SelectValue placeholder="Select a contact" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">No contact selected</SelectItem>
+            <SelectItem value="none">No contact selected</SelectItem>
             {contacts.map((contact) => (
               <SelectItem key={contact.id} value={contact.id}>
                 {contact.name}
@@ -75,12 +81,15 @@ export function EntitySelector({
       {/* Deal Selector */}
       <Field>
         <FieldLabel htmlFor="deal-select">Deal (Optional)</FieldLabel>
-        <Select value={selectedDealId} onValueChange={(value) => onSelectDeal(value || undefined)}>
+        <Select
+          value={selectedDealId || "none"}
+          onValueChange={(value) => onSelectDeal(value === "none" ? undefined : value)}
+        >
           <SelectTrigger id="deal-select">
             <SelectValue placeholder="Select a deal" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">No deal selected</SelectItem>
+            <SelectItem value="none">No deal selected</SelectItem>
             {deals.map((deal) => (
               <SelectItem key={deal.id} value={deal.id}>
                 {deal.title}
