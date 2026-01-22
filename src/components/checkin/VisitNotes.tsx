@@ -245,46 +245,32 @@ export function VisitNotes() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950">
+    <div className="flex flex-col min-h-screen bg-background">
       {/* Header */}
-      <div className="sticky top-0 z-30 bg-white dark:bg-slate-900 px-4 py-4 shadow-sm">
+      <div className="sticky top-0 z-30 bg-card px-4 py-4 shadow-sm border-b border-slate-200 dark:border-slate-700/50">
         <div className="flex items-center justify-between">
-          <button
-            onClick={handleBack}
-            className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
-          >
+          <button onClick={handleBack}
+            className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors">
             <ArrowLeftIcon className="h-6 w-6" />
             <span className="text-sm font-medium">Back</span>
           </button>
-          <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleSave}
-              className="flex items-center gap-1.5"
-            >
-              <SaveIcon className="h-4 w-4" />
-              <span className="text-sm font-medium">Save</span>
-            </Button>
-          </div>
+          <Button variant="ghost" size="sm" onClick={handleSave} className="flex items-center gap-1.5">
+            <SaveIcon className="h-4 w-4" />
+            <span className="text-sm font-medium">Save</span>
+          </Button>
         </div>
         <div className="mt-3">
           <h1 className="text-xl font-bold text-slate-900 dark:text-white">
             {place.name}
           </h1>
           <div className="flex items-center justify-between mt-1">
-            <p className="text-sm text-slate-500 dark:text-slate-400">
+            <p className="text-sm text-muted-foreground">
               {formatVisitTime} • {formatDuration(sessionDuration)}
             </p>
-            <button
-              onClick={handlePauseResume}
-              className={cn(
-                "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors",
-                isPaused
-                  ? "bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300"
-                  : "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300"
-              )}
-            >
+            <button onClick={handlePauseResume}
+              className={cn("flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors",
+                isPaused ? "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300"
+                  : "bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary/90")}>
               {isPaused ? (
                 <>
                   <PlayIcon className="h-4 w-4" />
@@ -298,6 +284,32 @@ export function VisitNotes() {
               )}
             </button>
           </div>
+        </div>
+      </div>
+      <div className="mt-3">
+        <h1 className="text-xl font-bold text-slate-900 dark:text-white">
+          {place.name}
+        </h1>
+        <div className="flex items-center justify-between mt-1">
+          <p className="text-sm text-slate-500 dark:text-slate-400">
+            {formatVisitTime} • {formatDuration(sessionDuration)}
+          </p>
+          <button onClick={handlePauseResume}
+            className={cn("flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors", isPaused
+              ? "bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300"
+              : "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300")}>
+            {isPaused ? (
+              <>
+                <PlayIcon className="h-4 w-4" />
+                <span>Resume</span>
+              </>
+            ) : (
+              <>
+                <PauseIcon className="h-4 w-4" />
+                <span>Pause</span>
+              </>
+            )}
+          </button>
         </div>
       </div>
 
@@ -377,7 +389,7 @@ export function VisitNotes() {
           <div className="flex items-center gap-2 mb-3 pb-3 border-b border-slate-100 dark:border-slate-700">
             <Button
               variant="ghost"
-              size="xs"
+              size="icon"
               onClick={() => handleFormat("bullet")}
               className="flex items-center gap-1.5"
             >
@@ -386,7 +398,7 @@ export function VisitNotes() {
             </Button>
             <Button
               variant="ghost"
-              size="xs"
+              size="icon"
               onClick={() => handleFormat("bold")}
               className="flex items-center gap-1.5"
             >
@@ -395,7 +407,7 @@ export function VisitNotes() {
             </Button>
             <Button
               variant="ghost"
-              size="xs"
+              size="icon"
               onClick={() => handleFormat("tag")}
               className="flex items-center gap-1.5"
             >

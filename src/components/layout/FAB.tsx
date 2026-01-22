@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { QuickReminder } from "@/components/reminders/QuickReminder";
+import { seedAllStores } from "@/lib/mock";
 
 export function FAB({ className }: { className?: string }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,15 +13,16 @@ export function FAB({ className }: { className?: string }) {
   const actions = [
     { id: "place", label: "Add Place", icon: MapPinIcon, action: () => navigate({ to: "/places/new" }) },
     { id: "contact", label: "Add Contact", icon: UserIcon, action: () => navigate({ to: "/contacts/new" }) },
-    { id: "deal", label: "New Deal", icon: BriefcaseIcon, action: () => navigate({ to: "/pipeline" }) },
+    { id: "deal", label: "New Deal", icon: BriefcaseIcon, action: () => navigate({ to: "/deals/new" }) },
     { id: "reminder", label: "Reminder", icon: BellIcon, action: () => { setIsOpen(false); setQuickReminderOpen(true); } },
     { id: "visit", label: "Check-in", icon: CheckCircle2Icon, action: () => navigate({ to: "/checkin/start" }) },
+    { id: 'mock', label: 'Add Mock Data', icon: UserIcon, action: () => {seedAllStores(); alert('✅ Mock data added!'); } },
   ];
 
   return (
     <>
       <QuickReminder open={quickReminderOpen} onOpenChange={setQuickReminderOpen} />
-      <div className={cn("fixed bottom-20 right-4 z-50", className)}>
+      <div className={cn("fixed bottom-24 right-4 z-50", className)}>
         {isOpen && (
           <div className="mb-3 flex flex-col gap-2">
             {actions.map((action) => {
@@ -29,9 +31,9 @@ export function FAB({ className }: { className?: string }) {
                 <button
                   key={action.id}
                   onClick={action.action}
-                  className="flex items-center gap-2 rounded-lg bg-slate-800 px-3 py-2 text-sm text-white shadow-lg hover:bg-slate-700 dark:bg-slate-700 dark:hover:bg-slate-600"
+                  className="flex items-center gap-2 rounded-xl bg-card px-4 py-3 text-sm font-semibold text-foreground shadow-lg border border-border hover:bg-accent active:scale-95 transition-all dark:bg-card dark:border-border"
                 >
-                  <Icon className="h-4 w-4" />
+                  <Icon className="h-5 w-5" />
                   <span>{action.label}</span>
                 </button>
               );
@@ -40,10 +42,10 @@ export function FAB({ className }: { className?: string }) {
         )}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex h-14 w-14 items-center justify-center rounded-full bg-slate-900 text-white shadow-lg hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-200 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900"
+          className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/40 hover:scale-105 active:scale-95 transition-transform"
           aria-label={isOpen ? "Close actions" : "Open actions"}
         >
-          <PlusIcon className={cn("h-6 w-6 transition-transform", isOpen && "rotate-45")} />
+          <PlusIcon className={cn("h-8 w-8 font-bold transition-transform", isOpen && "rotate-45")} />
         </button>
       </div>
     </>

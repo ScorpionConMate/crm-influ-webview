@@ -1,3 +1,4 @@
+import { formatToCurrency } from "@/lib/utils";
 import { useAuthStore } from "@/stores/authStore";
 import { useDealsStore } from "@/stores/dealsStore";
 import { useRemindersStore } from "@/stores/remindersStore";
@@ -16,14 +17,14 @@ export function Home() {
   const prospectDeals = useMemo(() => deals.filter((d) => d.status === "lead" || d.status === "contacted"), [deals]);
   const negotiatingDeals = useMemo(() => deals.filter((d) => d.status === "negotiation"), [deals]);
 
-  const totalConfirmedValue = confirmedDeals.reduce((sum, d) => sum + (d.actualValue || d.estimatedValue || 0), 0);
-  const totalProspectValue = prospectDeals.reduce((sum, d) => sum + (d.estimatedValue || 0), 0);
+  const totalConfirmedValue = formatToCurrency(confirmedDeals.reduce((sum, d) => sum + (d.actualValue || d.estimatedValue || 0), 0));
+  const totalProspectValue = formatToCurrency(prospectDeals.reduce((sum, d) => sum + (d.estimatedValue || 0), 0));
 
   const upcomingReminders = useMemo(
     () =>
       reminders
         .filter((r) => !r.completed)
-        .sort((a, b) => a.dueDate.getTime() - b.dueDate.getTime())
+        .sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime())
         .slice(0, 5),
     [reminders]
   );
@@ -42,45 +43,45 @@ export function Home() {
       </div>
 
       <section>
-        <div className="flex gap-4 overflow-x-auto pb-4">
-          <div className="min-w-[160px] flex-1 flex-col gap-3 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 p-5 text-white shadow-lg">
+        <div className="flex gap-4 overflow-x-auto no-scrollbar pb-4">
+          <div className="min-w-[160px] flex-1 flex-col gap-3 rounded-xl bg-gradient-to-br from-primary to-[#0ea5c6] p-5 text-white shadow-lg shadow-primary/20">
             <div className="flex items-center justify-between text-white/90">
               <span className="text-sm font-medium">Confirmed</span>
               <CheckCircle className="h-5 w-5" />
             </div>
             <div>
-              <p className="text-3xl font-bold leading-tight tracking-tight">
-                ${totalConfirmedValue.toFixed(1)}k
+              <p className="text-white text-3xl font-bold leading-tight tracking-tight">
+                ${totalConfirmedValue}
               </p>
-              <p className="text-white/80 text-xs mt-1">{confirmedDeals.length} deals</p>
+              <p className="text-white/80 text-xs mt-1">+15% from last month</p>
             </div>
           </div>
 
-          <div className="min-w-[160px] flex-1 flex-col gap-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 shadow-sm">
-            <div className="flex items-center justify-between text-slate-500 dark:text-slate-400">
+          <div className="min-w-[160px] flex-1 flex-col gap-3 rounded-xl bg-card border border-slate-100 dark:border-slate-700/50 p-5 shadow-sm">
+            <div className="flex items-center justify-between text-muted-foreground">
               <span className="text-sm font-medium">Prospect</span>
               <BriefcaseIcon className="h-5 w-5" />
             </div>
             <div>
-              <p className="text-slate-900 dark:text-white text-3xl font-bold leading-tight tracking-tight">
+              <p className="text-foreground text-3xl font-bold leading-tight tracking-tight">
                 {prospectDeals.length} Deals
               </p>
-              <p className="text-slate-400 dark:text-slate-500 text-xs mt-1">
-                ~ ${totalProspectValue.toFixed(1)}k potential
+              <p className="text-muted-foreground text-xs mt-1">
+                ~ ${totalProspectValue} potential
               </p>
             </div>
           </div>
 
-          <div className="min-w-[160px] flex-1 flex-col gap-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 shadow-sm">
-            <div className="flex items-center justify-between text-slate-500 dark:text-slate-400">
+          <div className="min-w-[160px] flex-1 flex-col gap-3 rounded-xl bg-card border border-slate-100 dark:border-slate-700/50 p-5 shadow-sm">
+            <div className="flex items-center justify-between text-muted-foreground">
               <span className="text-sm font-medium">Negotiating</span>
               <CheckCircle2Icon className="h-5 w-5" />
             </div>
             <div>
-              <p className="text-slate-900 dark:text-white text-3xl font-bold leading-tight tracking-tight">
+              <p className="text-foreground text-3xl font-bold leading-tight tracking-tight">
                 {negotiatingDeals.length} Deals
               </p>
-              <p className="text-slate-400 dark:text-slate-500 text-xs mt-1">
+              <p className="text-muted-foreground text-xs mt-1">
                 Awaiting response
               </p>
             </div>
@@ -91,8 +92,8 @@ export function Home() {
       <section>
         <div className="grid grid-cols-4 gap-4">
           <button className="flex flex-col items-center gap-3 group cursor-pointer">
-            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm group-active:scale-95 transition-all group-hover:border-cyan-500/50 group-hover:shadow-md group-hover:shadow-cyan-500/10">
-              <CalendarIcon className="h-8 w-8 text-cyan-500" />
+            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-card border border-slate-100 dark:border-slate-700/50 shadow-sm group-active:scale-95 transition-all group-hover:border-primary/50 group-hover:shadow-md group-hover:shadow-primary/10">
+              <CalendarIcon className="h-8 w-8 text-primary" />
             </div>
             <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
               Check-In
@@ -100,8 +101,8 @@ export function Home() {
           </button>
 
           <button className="flex flex-col items-center gap-3 group cursor-pointer">
-            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm group-active:scale-95 transition-all group-hover:border-cyan-500/50 group-hover:shadow-md group-hover:shadow-cyan-500/10">
-              <BriefcaseIcon className="h-8 w-8 text-cyan-500" />
+            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-card border border-slate-100 dark:border-slate-700/50 shadow-sm group-active:scale-95 transition-all group-hover:border-primary/50 group-hover:shadow-md group-hover:shadow-primary/10">
+              <BriefcaseIcon className="h-8 w-8 text-primary" />
             </div>
             <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
               New Deal
@@ -109,8 +110,8 @@ export function Home() {
           </button>
 
           <button className="flex flex-col items-center gap-3 group cursor-pointer">
-            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm group-active:scale-95 transition-all group-hover:border-cyan-500/50 group-hover:shadow-md group-hover:shadow-cyan-500/10">
-              <MapPinIcon className="h-8 w-8 text-cyan-500" />
+            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-card border border-slate-100 dark:border-slate-700/50 shadow-sm group-active:scale-95 transition-all group-hover:border-primary/50 group-hover:shadow-md group-hover:shadow-primary/10">
+              <MapPinIcon className="h-8 w-8 text-primary" />
             </div>
             <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
               Add Place
@@ -118,8 +119,8 @@ export function Home() {
           </button>
 
           <button className="flex flex-col items-center gap-3 group cursor-pointer">
-            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm group-active:scale-95 transition-all group-hover:border-cyan-500/50 group-hover:shadow-md group-hover:shadow-cyan-500/10">
-              <BellIcon className="h-8 w-8 text-cyan-500" />
+            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-card border border-slate-100 dark:border-slate-700/50 shadow-sm group-active:scale-95 transition-all group-hover:border-primary/50 group-hover:shadow-md group-hover:shadow-primary/10">
+              <BellIcon className="h-8 w-8 text-primary" />
             </div>
             <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
               Reminder
@@ -133,7 +134,7 @@ export function Home() {
           <h3 className="text-slate-900 dark:text-white text-lg font-bold">
             Today's Priorities
           </h3>
-          <button className="text-cyan-500 text-sm font-medium cursor-pointer">
+          <button className="text-primary text-sm font-medium cursor-pointer">
             View All
           </button>
         </div>
@@ -141,11 +142,11 @@ export function Home() {
         <div className="space-y-3">
           {upcomingReminders.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-12 text-center">
-              <CheckCircle className="h-12 w-12 text-slate-300 dark:text-slate-600 mb-3" />
-              <p className="text-sm text-slate-500 dark:text-slate-400">
+              <CheckCircle className="h-12 w-12 text-muted-foreground mb-3" />
+              <p className="text-sm text-muted-foreground">
                 No reminders for today
               </p>
-              <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 You're all caught up!
               </p>
             </div>
@@ -157,7 +158,7 @@ export function Home() {
               return (
                 <div
                   key={reminder.id}
-                  className="flex items-start gap-4 p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm hover:border-cyan-500/50 transition-colors cursor-pointer"
+                  className="flex items-start gap-4 p-4 rounded-xl bg-card border border-slate-100 dark:border-slate-700/50 shadow-sm hover:border-primary/50 transition-colors cursor-pointer"
                   onClick={() => {
                     markAsCompleted(reminder.id);
                   }}
@@ -167,20 +168,19 @@ export function Home() {
                       type="checkbox"
                       checked={reminder.completed}
                       onChange={() => markAsCompleted(reminder.id)}
-                      className="h-5 w-5 rounded border-2 border-slate-300 dark:border-slate-600 bg-transparent text-cyan-500 focus:ring-offset-slate-900 focus:ring-cyan-500"
+                      className="h-5 w-5 rounded border-2 border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-offset-background focus:ring-primary"
                     />
                   </div>
                   <div className="flex-1">
                     <div className="flex justify-between items-start mb-1">
-                      <h4 className="text-sm font-semibold text-slate-900 dark:text-white">
+                      <h4 className="text-sm font-semibold text-slate-900 dark:text-white hover:text-primary transition-colors">
                         {reminder.title}
                       </h4>
                       <span
-                        className={`text-xs font-medium px-2 py-0.5 rounded ${
-                          isUrgent
+                        className={`text-xs font-medium px-2 py-0.5 rounded ${isUrgent
                             ? "text-amber-500 bg-amber-500/10"
-                            : "text-slate-500 dark:text-slate-400"
-                        }`}
+                            : "text-muted-foreground"
+                          }`}
                       >
                         {isSameDay
                           ? format(reminder.dueDate, "h:mm a")
@@ -188,7 +188,7 @@ export function Home() {
                       </span>
                     </div>
                     {reminder.description && (
-                      <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-1">
+                      <p className="text-xs text-muted-foreground line-clamp-1">
                         {reminder.description}
                       </p>
                     )}

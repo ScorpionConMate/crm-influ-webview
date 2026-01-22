@@ -1,11 +1,12 @@
 import * as React from "react";
-import { useNavigate } from "@tanstack/react-router";
 import { usePlacesStore } from "@/stores/placesStore";
 import { useVisitsStore } from "@/stores/visitsStore";
 import { useContactsStore } from "@/stores/contactsStore";
+import { useDealsStore } from "@/stores/dealsStore";
 import { ArrowLeftIcon, SearchIcon, MapPinIcon, ClockIcon, UserIcon, CheckIcon, PlusIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Deal } from "@/lib/zod/schemas";
+import { useNavigate } from "@tanstack/react-router";
 
 export function StartVisit() {
   const navigate = useNavigate();
@@ -38,10 +39,14 @@ export function StartVisit() {
     return contacts.find((c) => c.id === link.contactId) || null;
   };
 
-  const getActiveDealsForPlace = (): Deal[] => {
-    // Placeholder: Will be implemented when dealsStore is available
-    // For now, return empty array
-    return [];
+  const getActiveDealsForPlace = (placeId: string): Deal[] => {
+    const { getDealsByPlace } = useDealsStore();
+    const placeDeals = getDealsByPlace(placeId);
+    
+    return placeDeals.filter((deal) => {
+      // Only return active deals (not lost, not paid)
+      return deal.status !== "lost" && deal.status !== "paid";
+    });
   };
 
   const handleStartVisit = (placeId: string) => {
@@ -69,9 +74,9 @@ export function StartVisit() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950">
+    <div className="flex flex-col min-h-screen bg-background">
       {/* Header */}
-      <div className="sticky top-0 z-30 bg-white dark:bg-slate-900 px-4 py-4 shadow-sm">
+      <div className="sticky top-0 z-30 bg-card px-4 py-4 shadow-sm border-b border-slate-200 dark:border-slate-700/50">
         <div className="flex items-center justify-between">
           <button
             onClick={handleBack}
@@ -85,15 +90,15 @@ export function StartVisit() {
           </h1>
           <div className="w-16" /> {/* Spacer for balance */}
         </div>
-        <p className="mt-2 text-center text-sm text-slate-500 dark:text-slate-400">
+        <p className="mt-2 text-center text-sm text-muted-foreground">
           {formattedDate}
         </p>
       </div>
 
       {/* Search Bar */}
-      <div className="sticky top-[84px] z-20 bg-white dark:bg-slate-900 px-4 py-3 border-b border-slate-200 dark:border-slate-800">
-        <div className="flex w-full items-center rounded-lg h-12 bg-slate-100 dark:bg-slate-800 shadow-inner">
-          <div className="flex items-center justify-center pl-4 pr-2 text-slate-400">
+      <div className="sticky top-[60px] z-20 bg-background/95 backdrop-blur-sm px-4 py-3 border-b border-slate-200 dark:border-slate-700/50">
+        <div className="flex w-full items-center rounded-xl h-12 bg-card shadow-sm border border-slate-100 dark:border-slate-700/50">
+          <div className="flex items-center justify-center pl-4 pr-2 text-muted-foreground">
             <SearchIcon className="h-5 w-5" />
           </div>
           <input
@@ -101,7 +106,7 @@ export function StartVisit() {
             placeholder="Search places..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-transparent text-slate-900 dark:text-white focus:outline-0 focus:ring-0 border-none h-full placeholder:text-slate-400 text-base font-normal leading-normal"
+            className="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl bg-transparent text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary border-none h-full placeholder:text-slate-400 text-base font-normal leading-normal"
           />
         </div>
       </div>
@@ -115,7 +120,7 @@ export function StartVisit() {
             {filteredPlaces.map((place, index) => {
               const contact = getContactForPlace(place.id);
               const isNearby = index < 2; // Mock: Show nearby for first 2 places
-              const activeDeals = getActiveDealsForPlace();
+              const activeDeals = getActiveDealsForPlace(place.id);
               const selectedDealId = selectedDeals[place.id];
 
               return (
@@ -138,10 +143,10 @@ export function StartVisit() {
       </div>
 
       {/* Manual Check-In Footer */}
-      <div className="fixed bottom-0 left-0 right-0 z-30 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-4 py-4 shadow-lg">
+      <div className="fixed bottom-0 left-0 right-0 z-30 bg-background border-t border-slate-200 dark:border-slate-700/50 px-4 py-4 shadow-lg pb-safe-bottom">
         <button
           onClick={handleManualCheckIn}
-          className="w-full py-3.5 px-4 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-xl font-bold text-base transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+          className="w-full py-3.5 px-4 bg-card hover:bg-accent text-slate-900 dark:text-white rounded-xl font-bold text-base transition-all active:scale-[0.98] flex items-center justify-center gap-2"
         >
           <PlusIcon className="h-5 w-5" />
           <span>Manual Check-In</span>
@@ -192,12 +197,12 @@ function PlaceCard({
   const selectedDeal = getSelectedDeal();
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
+    <div className="bg-card border border-slate-100 dark:border-slate-700/50 rounded-xl shadow-sm overflow-hidden">
       {/* Card Header */}
       <div className="p-4">
         <div className="flex items-start gap-3">
           {/* Place Icon */}
-          <div className="bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-lg size-16 shrink-0 flex items-center justify-center text-white text-xl font-bold shadow-sm">
+          <div className="bg-gradient-to-br from-primary to-[#0ea5c6] rounded-xl size-16 shrink-0 flex items-center justify-center text-white text-xl font-bold shadow-inner">
             {place.name.charAt(0).toUpperCase()}
           </div>
 
@@ -331,19 +336,43 @@ function PlaceCard({
 }
 
 function EmptyState({ searchQuery }: { searchQuery: string }) {
+  const navigate = useNavigate();
   return (
-    <div className="flex flex-1 flex-col items-center justify-center py-16 text-center">
-      <div className="w-24 h-24 mb-6 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
-        <SearchIcon className="h-12 w-12 text-slate-300 dark:text-slate-600" />
+    <div className="flex flex-1 flex-col items-center justify-center px-6 py-16 text-center">
+      <div className="w-full flex flex-col items-center justify-center mb-8">
+        <div className="relative w-64 h-64 mb-6">
+          {/* Abstract Glow Background */}
+          <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full transform scale-75" />
+          {/* Floating Icon overlay */}
+          <div className="relative w-full h-full flex items-center justify-center">
+            <div className="absolute bottom-4 right-10 bg-card border border-border p-4 rounded-2xl shadow-xl transform rotate-6">
+              <MapPinIcon className="h-8 w-8 text-primary" />
+            </div>
+            <MapPinIcon className="h-24 w-24 text-muted-foreground" />
+          </div>
+        </div>
       </div>
-      <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
-        {searchQuery ? "No places found" : "No places yet"}
-      </h2>
-      <p className="text-sm text-slate-500 dark:text-slate-400 max-w-xs mx-auto">
-        {searchQuery
-          ? "Try adjusting your search query"
-          : "Add places to start checking in"}
-      </p>
+
+      <div className="text-center space-y-3 max-w-xs mx-auto">
+        <h2 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+          {searchQuery ? "No places found" : "No places yet"}
+        </h2>
+        <p className="text-muted-foreground text-base leading-relaxed">
+          {searchQuery
+            ? "Try adjusting your search query"
+            : "Add places to start checking in"}
+        </p>
+      </div>
+
+      <div className="w-full pb-6 pt-8 space-y-3">
+        <button
+          onClick={() => navigate({ to: "/places" })}
+          className="w-full py-3.5 px-4 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-bold text-base shadow-lg shadow-primary/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+        >
+          <PlusIcon className="h-5 w-5" />
+          <span>Add Place</span>
+        </button>
+      </div>
     </div>
   );
 }

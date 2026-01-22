@@ -292,7 +292,7 @@ export function CalendarView() {
             <div className="flex gap-2">
               <Button
                 variant="ghost"
-                size="xs"
+                size="sm"
                 onClick={goToToday}
                 className="h-5 px-2 text-xs font-medium text-primary hover:text-primary"
               >
@@ -301,7 +301,7 @@ export function CalendarView() {
               {nextEventDate && (
                 <Button
                   variant="ghost"
-                  size="xs"
+                  size="sm"
                   onClick={() => setSelectedDate(nextEventDate)}
                   className="h-5 px-2 text-xs font-medium text-primary hover:text-primary gap-1"
                 >

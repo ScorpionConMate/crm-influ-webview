@@ -55,7 +55,7 @@ export const useRemindersStore = create<RemindersStore>()(
         future.setDate(future.getDate() + days);
         return reminders
           .filter((r) => !r.completed && r.dueDate >= now && r.dueDate <= future)
-          .sort((a, b) => a.dueDate.getTime() - b.dueDate.getTime());
+          .sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
       },
       getRemindersByPlace: (placeId) => {
         const { reminders } = get();

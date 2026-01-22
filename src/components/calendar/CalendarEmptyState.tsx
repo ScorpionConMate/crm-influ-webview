@@ -84,12 +84,12 @@ export function CalendarEmptyState({
         </div>
       </div>
 
-      {/* Copy - Spanish (primary language) */}
+      {/* Copy - English */}
       <h3 className="text-lg md:text-xl font-bold text-slate-900 dark:text-white mb-2">
-        Tu agenda está despejada
+        Your agenda is empty
       </h3>
       <p className="text-sm md:text-base text-slate-500 dark:text-slate-400 mb-6 max-w-xs">
-        Agrega fechas de publicación, visitas o recordatorios para comenzar.
+        Schedule events, visits, or reminders to get started.
       </p>
 
       {/* Action buttons */}
@@ -99,7 +99,7 @@ export function CalendarEmptyState({
           className="w-full gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
           size={compact ? "sm" : "default"}
         >
-          <span className="flex-1">Programar mi primer evento</span>
+          <span className="flex-1">Schedule First Event</span>
           <ChevronRightIcon className="h-4 w-4 shrink-0" />
         </Button>
         <Button
@@ -108,7 +108,7 @@ export function CalendarEmptyState({
           className="w-full border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800"
           size={compact ? "sm" : "default"}
         >
-          Explorar próximos días
+          Explore Upcoming Days
         </Button>
       </div>
     </div>

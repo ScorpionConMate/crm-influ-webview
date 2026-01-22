@@ -106,8 +106,7 @@ export function Calendar() {
 
   // Handle view toggle for keyboard shortcut
   const handleToggleView = useCallback(() => {
-    const newViewMode: "month" | "agenda" = viewMode === "month" ? "agenda" : "month";
-    setViewMode(newViewMode as "month" | "agenda");
+    setViewMode(viewMode === "month" ? "agenda" : "month");
   }, [viewMode, setViewMode]);
 
   // Handle DayDetail dismiss
@@ -128,7 +127,7 @@ export function Calendar() {
   return (
     <div className="flex flex-col h-full relative">
       {/* View mode toggle */}
-      <div className="flex-none px-4 pt-3 pb-2 bg-background border-b border-slate-200 dark:border-slate-800/50">
+      <div className="flex-none px-4 pt-3 pb-2 bg-background border-b border-slate-200 dark:border-slate-700/50">
         <Tabs value={viewMode} onValueChange={handleViewModeChange}>
           <TabsList className="grid grid-cols-2 w-full max-w-xs mx-auto">
             <TabsTrigger value="month">Month</TabsTrigger>

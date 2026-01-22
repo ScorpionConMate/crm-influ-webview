@@ -133,12 +133,12 @@ export function PlaceDetail({ placeId }: PlaceDetailProps) {
   }, [place.id, place.createdAt]);
 
   return (
-    <div className="flex h-screen flex-col bg-background dark:bg-background">
+    <div className="flex h-screen flex-col bg-background">
       {/* Top App Bar */}
-      <div className="sticky top-0 z-50 bg-background/95 dark:bg-background/95 backdrop-blur-sm border-b border-border p-4 pb-2 flex items-center justify-between">
+      <div className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border p-4 pb-2 pt-safe-top flex items-center justify-between">
         <button
           onClick={() => navigate({ to: "/places" })}
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full hover:bg-muted dark:hover:bg-muted/50 transition-colors"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full hover:bg-accent dark:hover:bg-accent/50 transition-colors"
         >
           <ArrowLeftIcon className="h-6 w-6" />
         </button>
@@ -148,7 +148,7 @@ export function PlaceDetail({ placeId }: PlaceDetailProps) {
         <div className="flex gap-1">
           <button
             onClick={handleEdit}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full hover:bg-muted dark:hover:bg-muted/50 transition-colors"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full hover:bg-accent dark:hover:bg-accent/50 transition-colors"
           >
             <EditIcon className="h-5 w-5" />
           </button>
@@ -183,11 +183,11 @@ export function PlaceDetail({ placeId }: PlaceDetailProps) {
           <div className="flex flex-col items-center gap-4">
             <div className="relative group cursor-pointer">
               <div
-                className="bg-center bg-no-repeat bg-cover rounded-2xl h-32 w-32 shadow-lg ring-4 ring-white dark:ring-border bg-muted flex items-center justify-center"
+                className="bg-center bg-no-repeat bg-cover rounded-2xl h-32 w-32 shadow-lg ring-4 ring-background/95 bg-muted flex items-center justify-center"
               >
                 <MapPinIcon className="h-16 w-16 text-muted-foreground/50" />
               </div>
-              <div className="absolute -bottom-2 -right-2 bg-primary text-background rounded-full p-1.5 border-4 border-background dark:border-background">
+              <div className="absolute -bottom-2 -right-2 bg-primary text-background rounded-full p-1.5 border-4 border-background">
                 <CheckCircle2Icon className="h-4 w-4" />
               </div>
             </div>
@@ -380,7 +380,7 @@ export function PlaceDetail({ placeId }: PlaceDetailProps) {
       </div>
 
       {/* Sticky Bottom Bar */}
-      <div className="fixed bottom-0 left-0 right-0 max-w-md mx-auto p-4 bg-background dark:bg-background border-t border-border z-50 backdrop-blur-md">
+      <div className="fixed bottom-0 left-0 right-0 max-w-md mx-auto p-4 bg-background border-t border-border z-50 backdrop-blur-md pb-safe-bottom">
         <Button
           className="w-full h-12 shadow-lg shadow-primary/20"
           onClick={() => {

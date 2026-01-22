@@ -4,6 +4,7 @@ import { Home } from "@/components/home/Home";
 import { Places } from "@/components/places/Places";
 import { Pipeline } from "@/components/pipeline/Pipeline";
 import { DealDetail } from "@/components/pipeline/DealDetail";
+import { DealCreate } from "@/components/pipeline/DealCreate";
 import { Calendar } from "@/components/calendar/Calendar";
 import { MobileShell } from "@/components/layout/shell";
 import { CreatePlace } from "@/components/CreatePlace";
@@ -16,14 +17,12 @@ import { VisitHistory } from "@/components/checkin/VisitHistory";
 import { VisitSummary } from "@/components/checkin/VisitSummary";
 import { useVisitsStore } from "@/stores/visitsStore";
 import { QuickReminder } from "@/components/reminders/QuickReminder";
+import { ProfileSettings } from "@/components/ProfileSettings";
 
 const rootRoute = createRootRoute({
   component: () => {
-    const location = useLocation();
-    const isCheckinRoute = location.pathname.startsWith("/checkin/");
-
     return (
-      <MobileShell hideTabs={isCheckinRoute} showFAB={!isCheckinRoute} showTopBar={!isCheckinRoute}>
+      <MobileShell showFAB={true} >
         <Outlet />
       </MobileShell>
     );
@@ -52,6 +51,12 @@ const dealDetailRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/deals/$id",
   component: DealDetailWrapper,
+});
+
+const dealNewRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/deals/new",
+  component: DealCreate,
 });
 
 function DealDetailWrapper() {
@@ -191,11 +196,26 @@ const quickReminderRoute = createRoute({
   component: QuickReminderWrapper,
 });
 
+// Profile & Settings route
+function ProfileSettingsWrapper() {
+  return (
+    <MobileShell showFAB={false} showTopBar={false}>
+      <ProfileSettings />
+    </MobileShell>
+  );
+}
+
+const profileRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/profile",
+  component: ProfileSettingsWrapper,
+});
+
 function QuickReminderWrapper() {
   const [isOpen, setIsOpen] = React.useState(true);
 
   return (
-    <MobileShell showFAB={false} showTopBar={false}>
+    <MobileShell showFAB={false}>
       <QuickReminder open={isOpen} onOpenChange={setIsOpen} />
     </MobileShell>
   );
@@ -222,9 +242,11 @@ const routeTree = rootRoute.addChildren([
   contactDetailRoute,
   pipelineRoute,
   dealDetailRoute,
+  dealNewRoute,
   calendarRoute,
   moreRoute,
   quickReminderRoute,
+  profileRoute,
   startVisitRoute,
   visitNotesRoute,
   visitHistoryRoute,

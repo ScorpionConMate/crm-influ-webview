@@ -4,7 +4,7 @@ import { useDealsStore } from "@/stores/dealsStore";
 import { usePlacesStore } from "@/stores/placesStore";
 import { useContactsStore } from "@/stores/contactsStore";
 import { type DealStatus, type Deal } from "@/lib/zod/schemas";
-import { DollarSignIcon, MessageCircleIcon, MoreHorizontalIcon, GitCompareArrowsIcon } from "lucide-react";
+import { DollarSignIcon, MessageCircleIcon, MoreHorizontalIcon, GitCompareArrowsIcon, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { DealStatusPicker } from "./DealStatusPicker";
 
@@ -19,6 +19,7 @@ const STAGES: Array<{ status: DealStatus; label: string }> = [
 ];
 
 export function Pipeline() {
+  const navigate = useNavigate();
   const [selectedStage, setSelectedStage] = useState<DealStatus>("lead");
   const { deals } = useDealsStore();
   const { places } = usePlacesStore();
@@ -38,7 +39,7 @@ export function Pipeline() {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="sticky top-0 z-10 bg-slate-50 dark:bg-slate-950 pb-2 border-b border-slate-200 dark:border-slate-800">
+      <div className="sticky top-0 z-10 bg-background pb-2 border-b border-slate-200 dark:border-slate-700/50">
         <div className="flex overflow-x-auto px-4 gap-6">
           {STAGES.map((stage) => {
             const count = deals.filter((d) => d.status === stage.status).length;
@@ -65,7 +66,7 @@ export function Pipeline() {
                   className={cn(
                     "h-0.5 w-full rounded-full",
                     selectedStage === stage.status
-                      ? "bg-cyan-500 shadow-[0_0_8px_rgba(6,182,212,0.6)]"
+                      ? "bg-primary shadow-[0_0_8px_rgba(19,200,236,0.6)]"
                       : "bg-transparent"
                   )}
                 />
@@ -75,16 +76,16 @@ export function Pipeline() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 pb-28">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 pb-24">
         {stageDeals.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 text-center">
-            <div className="w-20 h-20 rounded-xl bg-slate-800 flex items-center justify-center mb-4">
-              <DollarSignIcon className="h-10 w-10 text-slate-600" />
+            <div className="h-20 w-20 rounded-xl bg-card flex items-center justify-center mb-4">
+              <DollarSignIcon className="h-10 w-10 text-muted-foreground" />
             </div>
             <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
               No deals in {STAGES.find((s) => s.status === selectedStage)?.label?.toLowerCase()}
             </h3>
-            <p className="text-sm text-slate-500 dark:text-slate-400">
+            <p className="text-sm text-muted-foreground">
               Create your first deal to start tracking your collaborations
             </p>
           </div>
@@ -99,6 +100,14 @@ export function Pipeline() {
           ))
         )}
       </div>
+
+      {/* FAB for creating new deal */}
+      <button
+        onClick={() => navigate({ to: "/deals/new" })}
+        className="fixed bottom-24 right-4 z-30 size-14 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-xl shadow-slate-900/30 dark:shadow-white/10 flex items-center justify-center hover:scale-105 active:scale-95 transition-all"
+      >
+        <Plus className="h-8 w-8" />
+      </button>
     </div>
   );
 }
@@ -112,9 +121,12 @@ function DealCard({ deal, placeName, contactName }: { deal: Deal; placeName: str
     return `$${(value / 1000).toFixed(1)}k`;
   };
 
-  const getTimeAgo = (date: Date) => {
+  const getTimeAgo = (date?: Date) => {
     const now = new Date();
-    const diff = now.getTime() - date.getTime();
+    if (typeof date === "string") {
+      date = new Date(date);
+    }
+    const diff = date ? now.getTime() - date.getTime() : 0;
     const hours = Math.floor(diff / (1000 * 60 * 60));
     const days = Math.floor(hours / 24);
 
@@ -136,56 +148,56 @@ function DealCard({ deal, placeName, contactName }: { deal: Deal; placeName: str
     <>
       <div
         onClick={handleCardClick}
-        className="flex flex-col rounded-xl bg-slate-800 dark:bg-slate-800 p-4 shadow-lg active:scale-[0.98] transition-transform border border-slate-700 dark:border-slate-700 cursor-pointer"
+        className="flex flex-col rounded-xl bg-card border border-slate-100 dark:border-slate-700/50 p-4 shadow-lg active:scale-[0.98] transition-transform cursor-pointer"
       >
         <div className="flex items-start gap-4">
-          <div className="w-20 h-20 shrink-0 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center text-white text-2xl font-bold shadow-inner">
+          <div className="h-20 w-20 shrink-0 rounded-lg bg-gradient-to-br from-primary to-[#0ea5c6] flex items-center justify-center text-white text-2xl font-bold shadow-inner">
             {placeName.charAt(0).toUpperCase()}
           </div>
           <div className="flex-1 min-w-0 flex flex-col justify-between h-20 py-0.5">
             <div>
               <div className="flex items-center justify-between mb-0.5">
-                <h3 className="text-base font-bold text-white leading-tight truncate">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white leading-tight truncate">
                   {deal.title}
                 </h3>
-                <span className="text-[10px] font-medium text-cyan-400 uppercase tracking-wider">
+                <span className="text-[10px] font-medium text-primary uppercase tracking-wider">
                   {getTimeAgo(deal.createdAt)}
                 </span>
               </div>
-              <p className="text-slate-300 text-sm font-normal truncate">
+              <p className="text-muted-foreground text-sm font-normal truncate">
                 {placeName}
               </p>
             </div>
             <div className="flex items-center justify-between mt-auto gap-2">
               {contactName && (
-                <div className="flex items-center gap-1 text-slate-400">
+                <div className="flex items-center gap-1 text-muted-foreground">
                   <MessageCircleIcon className="h-3.5 w-3.5" />
                   <span className="text-xs">
                     {contactName}
                   </span>
                 </div>
               )}
-              <div className="flex items-center gap-1 text-cyan-400 font-bold text-base">
+              <div className="flex items-center gap-1 text-primary font-bold text-base">
                 <DollarSignIcon className="h-5 w-5" />
                 <span>{formatCurrency(deal.estimatedValue)}</span>
               </div>
             </div>
           </div>
         </div>
-        <div className="mt-4 pt-3 border-t border-slate-700 flex items-center justify-between">
-          <div className="flex items-center gap-1.5 text-slate-400">
+        <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700/50 flex items-center justify-between">
+          <div className="flex items-center gap-1.5 text-muted-foreground">
             <MessageCircleIcon className="h-4.5 w-4.5" />
             <span className="text-xs">Drafting email</span>
           </div>
           <div className="flex items-center gap-2">
             <button
               onClick={handleStatusButtonClick}
-              className="text-cyan-400 font-medium text-sm hover:text-cyan-300 transition-colors flex items-center gap-1"
+              className="text-primary font-medium text-sm hover:text-primary/90 transition-colors flex items-center gap-1"
             >
               <GitCompareArrowsIcon className="h-3.5 w-3.5" />
               Change Status
             </button>
-            <button className="text-slate-400 hover:text-white transition-colors">
+            <button className="text-muted-foreground hover:text-slate-900 dark:hover:text-white transition-colors">
               <MoreHorizontalIcon className="h-5 w-5" />
             </button>
           </div>

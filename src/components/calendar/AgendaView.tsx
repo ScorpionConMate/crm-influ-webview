@@ -66,7 +66,7 @@ function WeekDayButton({ date, isSelected, onClick, ariaLabel }: WeekDayButtonPr
       aria-selected={isSelected}
       role="tab"
       className={cn(
-        "flex flex-col items-center justify-center w-[3.5rem] h-[4rem] rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-primary",
+        "flex flex-col items-center justify-center w-[3.5rem] h-[4rem] rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary",
         isSelected
           ? "bg-white dark:bg-[#1e2e32] shadow-sm border border-slate-100 dark:border-slate-700/50 relative overflow-hidden ring-1 ring-primary/20"
           : "hover:bg-white dark:hover:bg-slate-800"
@@ -85,7 +85,7 @@ function WeekDayButton({ date, isSelected, onClick, ariaLabel }: WeekDayButtonPr
       </p>
       <div
         className={cn(
-          "size-7 flex items-center justify-center rounded-full text-sm font-bold",
+          "size-7 flex items-center justify-center rounded-full text-sm font-bold transition-transform duration-200",
           isSelected
             ? "bg-primary text-white shadow-md shadow-primary/30"
             : "text-slate-900 dark:text-white group-hover:bg-slate-100 dark:group-hover:bg-slate-700"
@@ -333,14 +333,14 @@ export function AgendaView() {
             <h2 className="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">
               {format(currentDate, "MMMM yyyy")}
             </h2>
-            <Button
-              variant="ghost"
-              size="xs"
-              onClick={goToToday}
-              className="h-5 px-2 text-xs font-medium text-primary hover:text-primary"
-            >
-              Today
-            </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={goToToday}
+                className="h-5 px-2 text-xs font-medium text-primary hover:text-primary"
+              >
+                Today
+              </Button>
           </div>
           <div className="flex w-10 items-center justify-end">
             <Button
